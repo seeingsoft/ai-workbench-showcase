@@ -14,7 +14,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;text-wrap:pretty;font-variant-numeric:tabular-nums}
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
 /* ---------- 统一顶栏（与 AI 招聘页 pitch 同款；令牌就近作用域，不影响页面既有配色） ---------- */
 header.nav{
@@ -31,10 +31,12 @@ header.nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;color
 header.nav .brand .nm{white-space:nowrap}
 header.nav .brand .short{display:none}
 header.nav .brand .dot{margin:0;width:11px;height:11px;border-radius:50%;background:var(--nv-grad);box-shadow:0 0 0 4px rgba(34,211,238,.14),0 0 18px rgba(34,211,238,.7);flex:none}
-header.nav .brand .sub{margin:0;color:var(--nv-txt-dim);font-weight:500;font-size:12.5px;letter-spacing:0;line-height:1.4}
+header.nav .brand .sub{margin:0;color:var(--nv-txt-dim);font-weight:500;font-size:13px;letter-spacing:0;line-height:1.4}
+/* 共用块护栏：宿主页面裸 table/th/td 规则不得把底色泄漏进 .acb 深色卡 */
+.acb table,.acb thead,.acb tbody,.acb tr,.acb th,.acb td{background:transparent}
 header.nav .nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
 header.nav .nav-links::-webkit-scrollbar{display:none}
-header.nav .nav-links a{padding:7px 11px;border-radius:8px;font-size:13px;color:var(--nv-txt-dim);white-space:nowrap;text-decoration:none;opacity:1;transition:background .2s,color .2s}
+header.nav .nav-links a{padding:7px 10px;border-radius:8px;font-size:13px;color:var(--nv-txt-dim);white-space:nowrap;text-decoration:none;opacity:1;transition:background .2s,color .2s}
 header.nav .nav-links a:hover{background:var(--nv-panel-2);color:var(--nv-txt-hi);text-decoration:none}
 header.nav .nav-links a.active{background:rgba(34,211,238,.13);color:#a5f3fc}
 header.nav .nav-cta{margin-left:8px;padding:8px 15px;border-radius:9px;font-size:13px;font-weight:600;background:var(--nv-grad);color:#06111d;white-space:nowrap;flex:none;text-decoration:none}
@@ -45,7 +47,7 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
 .hero h1{font-size:40px;line-height:1.25;letter-spacing:.5px;margin-bottom:16px;font-weight:800}
 .hero p.lead{color:#cdd8ec;font-size:16px;max-width:760px}
 .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;position:relative;z-index:2}
-.badge{background:rgba(255,255,255,.08);border:1px solid rgba(143,178,239,.35);border-radius:12px;padding:13px 18px;min-width:170px}
+.badge{text-wrap:balance;background:rgba(255,255,255,.08);border:1px solid rgba(143,178,239,.35);border-radius:12px;padding:13px 18px;min-width:170px}
 .badge b{display:block;font-size:15.5px;font-weight:800;color:#fff;letter-spacing:.2px;margin-bottom:3px}
 .badge span{font-size:12.5px;color:#a9badb}
 section{padding:64px 0}
@@ -95,13 +97,13 @@ table.matrix tr:last-child td{border-bottom:none}
 .pipe .p b{display:block;font-size:13px;color:var(--navy);margin-bottom:5px}
 .pipe .p span{font-size:11.5px;color:var(--ink-soft)}
 /* ---------- P1：金色人工节点 / 能力口径验收线 / 护栏四段式 / 来源清单 ---------- */
-.day .row.gold{border-color:#fbbf24;border-left:6px solid #fbbf24;background:#fffbeb}
+.day .row.gold{border-color:#fcd34d;border-left:6px solid #fcd34d;background:#fef3c7}
 .day .row.gold .t{color:#7c5a10}
 .day .row.gold .new-w{color:#3f3106}
 .day .row.gold .new-w b{color:#7c5a10}
-.gold-tag{display:inline-block;background:#fbbf24;color:#3d2c00;font-weight:800;font-size:11.5px;border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px}
+.gold-tag{display:inline-block;background:#fcd34d;color:#5b2c04;font-weight:800;font-size:11.5px;border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px}
 .crit{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
-.crit th,.crit td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.crit th,.crit td{text-wrap:balance;padding:13px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 .crit th{background:#f7f9fd;color:var(--navy);font-size:13px;font-weight:800}
 .crit th:first-child,.crit td:first-child{width:22%;font-weight:700;color:var(--ink)}
 .crit td:last-child{color:#12543a}
@@ -127,6 +129,15 @@ table.matrix tr:last-child td{border-bottom:none}
   .crit td:nth-child(2)::before{content:"口径 · ";font-weight:800}
   .crit td:nth-child(3)::before{content:"验收线 · ";font-weight:800}
 }
+.p2-fig{margin:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.p2-fig svg{display:block;width:100%;height:auto;min-width:720px}
+.p2-fig figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:10px;text-wrap:balance}
+.p2-h3{font-size:18px;color:var(--navy);margin:0 0 8px}
+.trace-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-top:24px}
+.trace-card .s-note{margin-bottom:0}
+.ico-svg{width:1.05em;height:1.05em;vertical-align:-0.16em;margin-right:.35em;flex:none}
+h3 .ico-svg{color:var(--blue)}
+.agent .ic .ico-svg{margin-right:0}
 /* ---------- P0：统一收尾（服务能力 / 联系 / 渐变 CTA） ---------- */
 .svc{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .svc li{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:16px 18px}
@@ -152,7 +163,7 @@ table.matrix tr:last-child td{border-bottom:none}
 @media (max-width:620px){.svc,.contact-block{grid-template-columns:1fr}}
 footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 .vs{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
-.vs th,.vs td{padding:12px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.vs th,.vs td{text-wrap:balance;padding:12px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 .vs th{background:#f7f9fd;color:var(--navy);font-size:13px}
 .vs tr:last-child td{border-bottom:none}
 .vs .old{color:#8a5a5a;background:#fdf7f7}
@@ -211,7 +222,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 .ring i{width:56px;height:56px;border-radius:50%;background:#0e2140;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;font-style:normal}
 .phone{width:250px;margin:0 auto;border:2px solid rgba(143,178,239,.4);border-radius:26px;padding:12px 10px 16px;background:linear-gradient(180deg,#0b1a31,#0e2140);box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .phone .notch{width:74px;height:5px;border-radius:99px;background:rgba(143,178,239,.35);margin:0 auto 10px}
-.s-note{color:#8195ba;font-size:12px;margin:2px 0 16px;text-align:center}
+.s-note{color:#5b6b7c;font-size:12px;margin:2px 0 16px;text-align:center}
 .sec-dark{background:#0d1d35!important;border-top:1px solid #1c3358;border-bottom:1px solid #1c3358}
 .sec-dark .sec-head h2{color:#fff}.sec-dark .sec-head p{color:#a9badb}.sec-dark .sec-head .kicker{color:#8fb2ef}
 @media (max-width:960px){.c4{grid-template-columns:repeat(2,1fr)}.c3{grid-template-columns:1fr 1fr}}
@@ -232,6 +243,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   .diagram{-webkit-overflow-scrolling:touch}
   .vs{font-size:12.5px}
 }
+@media print{header.nav{display:none}.hero{padding-top:40px}}
 @media (max-width:720px){
   header.nav .nav-inner{gap:10px;padding:0 14px;height:58px}
   header.nav .brand{font-size:13.5px}
@@ -290,168 +302,229 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
     <div class="sec-head">
       <p class="kicker">PRODUCT TOUR</p>
       <h2>一眼看懂：您的 AI 指挥舱长这样</h2>
-      <p>从清晨的第一条提醒，到深夜的经验沉淀——多屏界面巡览，展示她如何陪您走过一天。<span style="color:#8195ba;font-size:12px">（界面示意 · 实际以交付版本为准）</span></p>
+      <p>从清晨的第一条提醒，到深夜的经验沉淀——单张连续长图，带您走一遍她陪您走过的一天。（界面示意 · 实际以交付版本为准）</p>
     </div>
-    <div class="tour">
+    <figure class="p2-fig">
+      <svg viewBox="0 0 1040 2020" role="img" aria-label="私人财富顾问 AI 工作台 · 六屏连续长图示意">
+        <defs>
+          <linearGradient id="wbscr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfcff"/><stop offset="1" stop-color="#f1f5fc"/></linearGradient>
+          <linearGradient id="wbhero" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16386b"/><stop offset="1" stop-color="#0d1d35"/></linearGradient>
+          <linearGradient id="wbacc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#265dcc"/><stop offset="1" stop-color="#8fb2ef"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="1040" height="2020" fill="#f7f9fd"/>
+        <g font-family="inherit">
 
-      <!-- 屏 1 工作台 -->
-      <div class="screen">
-        <div class="s-bar"><i></i><i></i><i></i><b>工作台 · 早上好，王顾问</b><span>今天有 3 个关键提醒</span></div>
-        <div class="s-row c3" style="margin-bottom:12px">
-          <div class="d-card"><b>12</b><span>位客户待跟进 · 已按优先级排好</span></div>
-          <div class="d-card"><b>3</b><span>个关键时点提醒 · 产品到期/生日/升学</span></div>
-          <div class="d-card"><b>8</b><span>条画像今日更新 · 待您过目</span></div>
-        </div>
-        <div class="s-row c2" style="align-items:center;margin-bottom:12px">
-          <div class="d-soft">
-            <b>AI 工作流 · 正在为您运转</b>
-            <div class="flow-d" style="margin-top:8px">
-              <span class="n on">收件</span><span class="a">→</span><span class="n on">识别</span><span class="a">→</span><span class="n on">画像</span><span class="a">→</span><span class="n">提醒</span><span class="a">→</span><span class="n">话术</span>
-            </div>
-            <div class="glow-line" style="margin-top:10px"><i style="right:34%"></i></div>
-          </div>
-          <div class="d-soft">
-            <b>您的 8 个 Agent · 7×24 待命</b>
-            <div style="margin-top:8px;font-size:12px;color:#c3d2ec;line-height:2">
-              <span class="dot-live"></span>收件 Agent 处理中<br>
-              <span class="dot-live"></span>画像 Agent 提炼中<br>
-              <span class="dot-idle"></span>话术 Agent 待命
-            </div>
-          </div>
-        </div>
-        <div class="s-row c3">
-          <div class="d-soft"><b>王总</b><span>画像完整度 5/5 · 下次跟进：产品到期重配</span></div>
-          <div class="d-soft"><b>李女士</b><span>画像完整度 4/5 · 昨日新识别：关注子女留学</span></div>
-          <div class="d-soft"><b>陈先生</b><span>画像完整度 3/5 · 7 天未跟进 · 已生成提醒</span></div>
-        </div>
-      </div>
+          <!-- ===== 屏 1 工作台 ===== -->
+          <rect x="120" y="16" width="800" height="300" rx="18" fill="url(#wbscr)" stroke="#dbe3f0" stroke-width="2"/>
+          <rect x="120" y="16" width="800" height="42" rx="18" fill="url(#wbhero)"/>
+          <circle cx="146" cy="37" r="4.5" fill="#8fb2ef"/><text x="160" y="41" font-size="12" font-weight="700" fill="#fff">AI 工作台 · 早上好，王顾问</text>
+          <text x="898" y="41" text-anchor="end" font-size="11" fill="#a9badb">今天有 3 个关键提醒</text>
+          <g>
+            <rect x="146" y="76" width="238" height="66" rx="12" fill="#fff" stroke="#dbe3f0"/>
+            <text x="164" y="108" font-size="20" font-weight="800" fill="#0d1d35">12</text><text x="176" y="128" font-size="11" fill="#5a6b85">位客户待跟进 · 已按优先级排好</text>
+          </g>
+          <g>
+            <rect x="400" y="76" width="238" height="66" rx="12" fill="#fff" stroke="#dbe3f0"/>
+            <text x="418" y="108" font-size="20" font-weight="800" fill="#0d1d35">3</text><text x="430" y="128" font-size="11" fill="#5a6b85">个关键时点提醒 · 到期/生日</text>
+          </g>
+          <g>
+            <rect x="654" y="76" width="238" height="66" rx="12" fill="#fff" stroke="#dbe3f0"/>
+            <text x="672" y="108" font-size="20" font-weight="800" fill="#0d1d35">8</text><text x="684" y="128" font-size="11" fill="#5a6b85">条画像今日更新 · 待您过目</text>
+          </g>
+          <rect x="146" y="158" width="746" height="60" rx="12" fill="#fff" stroke="#dbe3f0"/>
+          <text x="164" y="182" font-size="12" font-weight="700" fill="#0d1d35">AI 工作流 · 正在为您运转</text>
+          <g font-size="11" fill="#cdd8ec">
+            <rect x="164" y="190" width="132" height="20" rx="10" fill="#e8eefb"/><text x="230" y="204" text-anchor="middle" fill="#265dcc">收件</text>
+            <text x="306" y="204" fill="#8fb2ef">→</text>
+            <rect x="318" y="190" width="132" height="20" rx="10" fill="#e8eefb"/><text x="384" y="204" text-anchor="middle" fill="#265dcc">识别</text>
+            <text x="460" y="204" fill="#8fb2ef">→</text>
+            <rect x="472" y="190" width="132" height="20" rx="10" fill="#e8eefb"/><text x="538" y="204" text-anchor="middle" fill="#265dcc">画像</text>
+            <text x="614" y="204" fill="#8fb2ef">→</text>
+            <rect x="626" y="190" width="132" height="20" rx="10" fill="#e8eefb"/><text x="692" y="204" text-anchor="middle" fill="#265dcc">提醒</text>
+            <text x="768" y="204" fill="#8fb2ef">→</text>
+            <rect x="780" y="190" width="112" height="20" rx="10" fill="#e8eefb"/><text x="836" y="204" text-anchor="middle" fill="#265dcc">话术</text>
+          </g>
+          <text x="146" y="248" font-size="11" fill="#5a6b85">您的 8 个 Agent · 7×24 待命</text>
+          <g font-size="10.5">
+            <rect x="146" y="256" width="180" height="22" rx="11" fill="#e8f7ef"/><text x="160" y="271" fill="#1f9d63">收件 Agent 处理中</text>
+            <rect x="336" y="256" width="180" height="22" rx="11" fill="#e8f7ef"/><text x="350" y="271" fill="#1f9d63">画像 Agent 提炼中</text>
+            <rect x="526" y="256" width="180" height="22" rx="11" fill="#f1f5fc"/><text x="540" y="271" fill="#5a6b85">话术 Agent 待命</text>
+            <rect x="716" y="256" width="176" height="22" rx="11" fill="#f1f5fc"/><text x="730" y="271" fill="#5a6b85">合规 Agent 已就绪</text>
+          </g>
+          <g font-size="11">
+            <rect x="146" y="288" width="746" height="20" rx="10" fill="#fff" stroke="#dbe3f0"/>
+            <text x="160" y="302" fill="#5a6b85">王总 · 画像完整度 5/5 · 下次跟进：产品到期重配</text>
+          </g>
 
-      <!-- 屏 2 客户高清画像 -->
-      <div class="screen">
-        <div class="s-bar"><i></i><i></i><i></i><b>客户高清画像 · 王总</b><span>每条认知都有出处</span></div>
-        <div class="s-row c3" style="align-items:start">
-          <div class="d-soft" style="text-align:center">
-            <b>六维画像</b>
-            <svg viewBox="0 0 200 190" style="width:150px;margin:6px auto 0;display:block">
-              <polygon points="100,25 161,60 161,130 100,165 39,130 39,60" fill="none" stroke="rgba(143,178,239,.35)" stroke-width="1.2"/>
-              <polygon points="100,52 145,78 145,118 100,141 55,118 55,78" fill="none" stroke="rgba(143,178,239,.22)" stroke-width="1"/>
-              <polygon points="100,34 150,68 140,124 100,152 48,116 52,70" fill="rgba(92,140,232,.35)" stroke="#8fb2ef" stroke-width="1.6"/>
-              <text x="100" y="16" text-anchor="middle" fill="#a9badb" font-size="9.5">投资偏好</text>
-              <text x="178" y="58" text-anchor="middle" fill="#a9badb" font-size="9.5">风险偏好</text>
-              <text x="178" y="140" text-anchor="middle" fill="#a9badb" font-size="9.5">人生事件</text>
-              <text x="100" y="182" text-anchor="middle" fill="#a9badb" font-size="9.5">家庭结构</text>
-              <text x="22" y="140" text-anchor="middle" fill="#a9badb" font-size="9.5">兴趣爱好</text>
-              <text x="22" y="58" text-anchor="middle" fill="#a9badb" font-size="9.5">决策习惯</text>
-            </svg>
-          </div>
-          <div class="d-soft">
-            <b>画像要素 · 附来源</b>
-            <div style="margin-top:8px;font-size:12px;color:#c3d2ec;line-height:2.1">
-              · 稳健增值 · 来源：微信聊天记录 8/12<br>
-              · 不能亏本金 · 来源：面谈纪要 7/30<br>
-              · 子女明年留学 · 来源：微信聊天记录 9/2<br>
-              · 家庭信息 <span class="chip">已加密保护</span>
-            </div>
-          </div>
-          <div class="d-soft" style="text-align:center">
-            <b>画像清晰度</b>
-            <div class="ring" style="margin:10px auto"><i>5/5</i></div>
-            <span style="font-size:11.5px;color:#9db0d0">越用越清晰</span>
-          </div>
-        </div>
-      </div>
+          <!-- ===== 屏 2 客户画像 360 ===== -->
+          <rect x="120" y="336" width="800" height="316" rx="18" fill="url(#wbscr)" stroke="#dbe3f0" stroke-width="2"/>
+          <rect x="120" y="336" width="800" height="42" rx="18" fill="url(#wbhero)"/>
+          <circle cx="146" cy="357" r="4.5" fill="#8fb2ef"/><text x="160" y="361" font-size="12" font-weight="700" fill="#fff">客户高清画像 · 王总</text>
+          <text x="898" y="361" text-anchor="end" font-size="11" fill="#a9badb">每条认知都有出处</text>
+          <text x="146" y="404" font-size="11.5" font-weight="700" fill="#0d1d35">六维画像</text>
+          <g font-size="10.5" fill="#265dcc">
+            <rect x="146" y="414" width="118" height="24" rx="12" fill="#e8eefb"/><text x="205" y="430" text-anchor="middle">投资偏好</text>
+            <rect x="274" y="414" width="118" height="24" rx="12" fill="#e8eefb"/><text x="333" y="430" text-anchor="middle">风险偏好</text>
+            <rect x="402" y="414" width="118" height="24" rx="12" fill="#e8eefb"/><text x="461" y="430" text-anchor="middle">人生事件</text>
+            <rect x="530" y="414" width="118" height="24" rx="12" fill="#e8eefb"/><text x="589" y="430" text-anchor="middle">家庭结构</text>
+            <rect x="658" y="414" width="118" height="24" rx="12" fill="#e8eefb"/><text x="717" y="430" text-anchor="middle">兴趣爱好</text>
+            <rect x="786" y="414" width="106" height="24" rx="12" fill="#e8eefb"/><text x="839" y="430" text-anchor="middle">决策习惯</text>
+          </g>
+          <text x="146" y="468" font-size="11.5" font-weight="700" fill="#0d1d35">画像要素 · 附来源</text>
+          <g font-size="11" fill="#1c2b45">
+            <rect x="146" y="478" width="470" height="26" rx="8" fill="#fff" stroke="#dbe3f0"/><text x="160" y="495">稳健增值 · 来源：微信聊天记录 8/12</text>
+            <rect x="146" y="510" width="470" height="26" rx="8" fill="#fff" stroke="#dbe3f0"/><text x="160" y="527">不能亏本金 · 来源：面谈纪要 7/30</text>
+            <rect x="146" y="542" width="470" height="26" rx="8" fill="#fff" stroke="#dbe3f0"/><text x="160" y="559">子女明年留学 · 来源：微信聊天记录 9/2</text>
+          </g>
+          <g>
+            <rect x="632" y="478" width="260" height="90" rx="12" fill="#fff" stroke="#dbe3f0"/>
+            <text x="648" y="502" font-size="11.5" font-weight="700" fill="#0d1d35">画像清晰度</text>
+            <text x="648" y="532" font-size="22" font-weight="800" fill="#265dcc">5/5</text>
+            <circle cx="836" cy="522" r="28" fill="none" stroke="#e8eefb" stroke-width="10"/>
+            <circle cx="836" cy="522" r="28" fill="none" stroke="#265dcc" stroke-width="10" stroke-dasharray="175.9 0" transform="rotate(-90 836 522)"/>
+            <text x="836" y="526" text-anchor="middle" font-size="10.5" fill="#5a6b85">越用越清晰</text>
+          </g>
+          <g font-size="10.5">
+            <rect x="146" y="580" width="220" height="24" rx="12" fill="#f1f5fc"/><text x="160" y="596" fill="#5a6b85">家庭信息已加密保护</text>
+            <rect x="378" y="580" width="238" height="24" rx="12" fill="#f1f5fc"/><text x="392" y="596" fill="#5a6b85">敏感信息已自动打码</text>
+            <rect x="628" y="580" width="264" height="24" rx="12" fill="#f1f5fc"/><text x="642" y="596" fill="#5a6b85">每条要素可回溯到原始进件</text>
+          </g>
 
-      <!-- 屏 3 Agent 矩阵任务面板 -->
-      <div class="screen">
-        <div class="s-bar"><i></i><i></i><i></i><b>Agent 矩阵 · 任务面板</b><span>今日已为您处理 47 项 · 节省 1 小时 52 分</span></div>
-        <div class="s-row c4" style="margin-bottom:12px">
-          <div class="d-soft"><b><span class="dot-live"></span>收件 Agent</b><span>运行中 · 正在整理 3 条新消息</span></div>
-          <div class="d-soft"><b><span class="dot-live"></span>识别 Agent</b><span>运行中 · 归属建议已生成</span></div>
-          <div class="d-soft"><b><span class="dot-live"></span>画像 Agent</b><span>运行中 · 提炼 2 条新要素</span></div>
-          <div class="d-soft"><b><span class="dot-live"></span>合规 Agent</b><span>运行中 · 敏感信息已打码</span></div>
-          <div class="d-soft"><b><span class="dot-idle"></span>提醒 Agent</b><span>已排程 · 明日 3 条提醒</span></div>
-          <div class="d-soft"><b><span class="dot-idle"></span>话术 Agent</b><span>待命 · 等您点名生成</span></div>
-          <div class="d-soft"><b><span class="dot-idle"></span>跟进 Agent</b><span>已归档 · 今日 5 条跟进</span></div>
-          <div class="d-soft"><b><span class="dot-idle"></span>沉淀 Agent</b><span>已沉淀 · 2 个经验模板</span></div>
-        </div>
-        <div class="d-soft">
-          <b>一条消息的旅程（自动接力）</b>
-          <div class="flow-d" style="margin-top:8px">
-            <span class="n on">微信聊天记录进入 ✓</span><span class="a">→</span><span class="n on">识别是谁 ✓</span><span class="a">→</span><span class="n on">提炼画像 ✓</span><span class="a">→</span><span class="n on">合规打码 ✓</span><span class="a">→</span><span class="n on" style="box-shadow:0 0 14px rgba(75,224,154,.5);border-color:rgba(75,224,154,.7)">等您一键确认 ⏳</span>
-          </div>
-          <div class="glow-line" style="margin-top:10px"><i style="right:12%"></i></div>
-        </div>
-      </div>
+          <!-- ===== 屏 3 Agent 矩阵 ===== -->
+          <rect x="120" y="672" width="800" height="286" rx="18" fill="url(#wbscr)" stroke="#dbe3f0" stroke-width="2"/>
+          <rect x="120" y="672" width="800" height="42" rx="18" fill="url(#wbhero)"/>
+          <circle cx="146" cy="693" r="4.5" fill="#8fb2ef"/><text x="160" y="697" font-size="12" font-weight="700" fill="#fff">Agent 矩阵 · 任务面板</text>
+          <text x="898" y="697" text-anchor="end" font-size="11" fill="#a9badb">今日已处理 47 项（示意数据）</text>
+          <g font-size="10.5">
+            <rect x="146" y="730" width="358" height="30" rx="9" fill="#fff" stroke="#dbe3f0"/><circle cx="164" cy="745" r="4" fill="#1f9d63"/><text x="176" y="749" fill="#1c2b45" font-weight="700">收件 Agent</text><text x="250" y="749" fill="#5a6b85">运行中 · 正在整理 3 条新消息</text>
+            <rect x="146" y="768" width="358" height="30" rx="9" fill="#fff" stroke="#dbe3f0"/><circle cx="164" cy="783" r="4" fill="#1f9d63"/><text x="176" y="787" fill="#1c2b45" font-weight="700">识别 Agent</text><text x="250" y="787" fill="#5a6b85">运行中 · 归属建议已生成</text>
+            <rect x="146" y="806" width="358" height="30" rx="9" fill="#fff" stroke="#dbe3f0"/><circle cx="164" cy="821" r="4" fill="#1f9d63"/><text x="176" y="825" fill="#1c2b45" font-weight="700">画像 Agent</text><text x="250" y="825" fill="#5a6b85">运行中 · 提炼 2 条新要素</text>
+            <rect x="146" y="844" width="358" height="30" rx="9" fill="#fff" stroke="#dbe3f0"/><circle cx="164" cy="859" r="4" fill="#1f9d63"/><text x="176" y="863" fill="#1c2b45" font-weight="700">合规 Agent</text><text x="250" y="863" fill="#5a6b85">运行中 · 敏感信息已打码</text>
+            <rect x="146" y="882" width="358" height="30" rx="9" fill="#fff" stroke="#dbe3f0"/><circle cx="164" cy="897" r="4" fill="#c98a1b"/><text x="176" y="901" fill="#1c2b45" font-weight="700">话术 Agent</text><text x="250" y="901" fill="#5a6b85">待命 · 等您点名生成</text>
+            <rect x="146" y="920" width="358" height="30" rx="9" fill="#fff" stroke="#dbe3f0"/><circle cx="164" cy="935" r="4" fill="#1f9d63"/><text x="176" y="939" fill="#1c2b45" font-weight="700">沉淀 Agent</text><text x="250" y="939" fill="#5a6b85">已沉淀 · 2 个经验模板</text>
+          </g>
+          <text x="528" y="742" font-size="11.5" font-weight="700" fill="#0d1d35">一条消息的旅程（自动接力）</text>
+          <g font-size="10.5">
+            <rect x="528" y="754" width="364" height="26" rx="8" fill="#e8f7ef"/><text x="542" y="771" fill="#1f9d63">微信聊天记录进入 已归档</text>
+            <rect x="528" y="786" width="364" height="26" rx="8" fill="#e8f7ef"/><text x="542" y="803" fill="#1f9d63">识别是谁 命中 96% 置信</text>
+            <rect x="528" y="818" width="364" height="26" rx="8" fill="#e8f7ef"/><text x="542" y="835" fill="#1f9d63">提炼画像 2 条新要素</text>
+            <rect x="528" y="850" width="364" height="26" rx="8" fill="#e8f7ef"/><text x="542" y="867" fill="#1f9d63">合规打码 敏感信息已处理</text>
+            <rect x="528" y="882" width="364" height="26" rx="8" fill="#fff8e6" stroke="#f0d9a0"/><text x="542" y="899" fill="#c98a1b" font-weight="700">等您一键确认（全流程仅此一处需要人）</text>
+          </g>
+          <text x="528" y="930" font-size="10.5" fill="#5a6b85">其余环节由 Agent 自动接力，不弹窗、不打断</text>
 
-      <!-- 屏 4 收件与归属 -->
-      <div class="screen">
-        <div class="s-bar"><i></i><i></i><i></i><b>收件与归属 · 微信聊天记录采集</b><span>5 秒一条 · 不用手工转录</span></div>
-        <div class="s-row c3" style="align-items:start">
-          <div class="d-soft">
-            <b>① 聊天记录进来</b>
-            <div style="margin-top:8px">
-              <div class="bubble them">最近厂里回款到了，你们有没有稳一点的理财？</div>
-              <div class="bubble me" style="margin-top:6px">有的王总，我帮您看看稳健型产品</div>
-            </div>
-            <div style="margin-top:10px"><span class="chip on">✦ 一键采集进系统</span></div>
-          </div>
-          <div class="d-soft">
-            <b>② AI 自动识别</b>
-            <div style="margin-top:8px;font-size:12px;color:#c3d2ec;line-height:2">
-              这条信息属于：<b style="color:#fff">王总</b>（匹配度 96%）<br>
-              依据：称呼"王总" + 历史话题"稳健理财"<br>
-              其他候选：无
-            </div>
-          </div>
-          <div class="d-soft">
-            <b>③ 一键确认入库</b>
-            <div style="margin-top:8px;font-size:12px;color:#c3d2ec;line-height:2">
-              提炼出 2 条画像要素：<br>· 资金到账拟再投资<br>· 偏好稳健型产品<br>
-              <span class="chip on" style="margin-top:6px;display:inline-block">✓ 确认归入画像</span>
-            </div>
-          </div>
-        </div>
-      </div>
+          <!-- ===== 屏 4 收件与归属 ===== -->
+          <rect x="120" y="990" width="800" height="252" rx="18" fill="url(#wbscr)" stroke="#dbe3f0" stroke-width="2"/>
+          <rect x="120" y="990" width="800" height="42" rx="18" fill="url(#wbhero)"/>
+          <circle cx="146" cy="1011" r="4.5" fill="#8fb2ef"/><text x="160" y="1015" font-size="12" font-weight="700" fill="#fff">收件与归属 · 微信聊天记录采集</text>
+          <text x="898" y="1015" text-anchor="end" font-size="11" fill="#a9badb">每条 5 秒（示意数据）</text>
+          <rect x="146" y="1050" width="330" height="108" rx="12" fill="#fff" stroke="#dbe3f0"/>
+          <text x="160" y="1072" font-size="11" font-weight="700" fill="#0d1d35">客户发来</text>
+          <rect x="160" y="1082" width="286" height="30" rx="10" fill="#e8eefb"/><text x="172" y="1102" font-size="10.5" fill="#1c2b45">王总：明年想给孩子存点留学钱</text>
+          <rect x="160" y="1118" width="200" height="30" rx="10" fill="#f1f5fc"/><text x="172" y="1138" font-size="10.5" fill="#5a6b85">（附一张截图）</text>
+          <text x="496" y="1074" font-size="11" font-weight="700" fill="#0d1d35">系统自动完成</text>
+          <g font-size="10.5" fill="#1c2b45">
+            <rect x="496" y="1084" width="396" height="26" rx="8" fill="#fff" stroke="#dbe3f0"/><text x="510" y="1101">识别客户：王总（匹配度 96%）</text>
+            <rect x="496" y="1116" width="396" height="26" rx="8" fill="#fff" stroke="#dbe3f0"/><text x="510" y="1133">提炼要素：子女留学计划 · 时间明年</text>
+            <rect x="496" y="1148" width="396" height="26" rx="8" fill="#e8f7ef"/><text x="510" y="1165" fill="#1f9d63">已归档到「王总」名下 · 无需人工录入</text>
+          </g>
+          <text x="146" y="1196" font-size="10.5" fill="#5a6b85">过去：截图存相册 → 手工录入 CRM（约 15 分钟/条，业务访谈估算）</text>
+          <text x="146" y="1218" font-size="10.5" fill="#1f9d63">现在：截图进系统即完成识别、提炼与归档，人只在存疑时介入</text>
 
-      <!-- 屏 5 话术生成 -->
-      <div class="screen">
-        <div class="s-bar"><i></i><i></i><i></i><b>个性化话术 · 王总 · 产品到期重配</b><span>AI 起草 · 合规检查 · 您批准</span></div>
-        <div class="s-row c2" style="align-items:start">
-          <div class="d-soft">
-            <b>选择与维度</b>
-            <div style="margin-top:8px">
-              <span class="chip on">王总</span><span class="chip">李女士</span><span class="chip">陈先生</span>
-            </div>
-            <div style="margin-top:6px">
-              <span class="chip on">产品到期重配</span><span class="chip">人生事件关怀</span><span class="chip">活动邀约</span>
-            </div>
-            <div style="margin-top:6px">
-              <span class="chip on">信任积累</span><span class="chip on">专业服务</span><span class="chip">转化推进</span>
-            </div>
-          </div>
-          <div class="d-soft">
-            <b>话术草稿 · 已通过合规检查 ✓</b>
-            <div class="bubble me" style="max-width:100%;margin-top:8px">王总，您去年配置的稳健固收 A 将于 9 月 15 日到期。我准备了两只同风险等级（R2）的方案，需要发您详情参考吗？</div>
-            <div style="margin-top:8px">
-              <span class="chip">★ 参考了历史最优沟通</span><span class="chip on">✓ 批准后使用</span>
-            </div>
-          </div>
-        </div>
-      </div>
+          <!-- ===== 屏 5 话术与合规 ===== -->
+          <rect x="120" y="1276" width="800" height="240" rx="18" fill="url(#wbscr)" stroke="#dbe3f0" stroke-width="2"/>
+          <rect x="120" y="1276" width="800" height="42" rx="18" fill="url(#wbhero)"/>
+          <circle cx="146" cy="1297" r="4.5" fill="#8fb2ef"/><text x="160" y="1301" font-size="12" font-weight="700" fill="#fff">个性化话术 · 王总 · 产品到期重配</text>
+          <text x="898" y="1301" text-anchor="end" font-size="11" fill="#a9badb">AI 起草 · 合规检查 · 您批准</text>
+          <rect x="146" y="1336" width="540" height="86" rx="12" fill="#fff" stroke="#dbe3f0"/>
+          <text x="160" y="1356" font-size="10.5" fill="#5a6b85">话术草稿（AI 起草）</text>
+          <text x="160" y="1378" font-size="10.5" fill="#1c2b45">王总，您去年配置的稳健固收 A 将于 9 月 15 日到期。我准备了两只</text>
+          <text x="160" y="1396" font-size="10.5" fill="#1c2b45">同风险等级（R2）的方案，需要发您详情参考吗？</text>
+          <text x="160" y="1412" font-size="10" fill="#8195ba">依据：画像「不能亏本金」「稳健增值」· 来源可查</text>
+          <rect x="702" y="1336" width="190" height="86" rx="12" fill="#fff8e6" stroke="#f0d9a0"/>
+          <text x="716" y="1358" font-size="11" font-weight="700" fill="#c98a1b">待您批准</text>
+          <text x="716" y="1378" font-size="10" fill="#5a6b85">合规检查已通过</text>
+          <text x="716" y="1394" font-size="10" fill="#5a6b85">签字权永远在人</text>
+          <rect x="716" y="1402" width="86" height="18" rx="9" fill="#265dcc"/><text x="759" y="1415" text-anchor="middle" font-size="10" fill="#fff">批准并发送</text>
+          <g font-size="10.5">
+            <rect x="146" y="1440" width="746" height="26" rx="8" fill="#e8f7ef"/><text x="160" y="1457" fill="#1f9d63">合规检查：未命中风险词 · 未承诺收益 · 未使用绝对化表述 全部通过</text>
+            <rect x="146" y="1474" width="746" height="26" rx="8" fill="#f1f5fc"/><text x="160" y="1491" fill="#5a6b85">全程留痕：谁起草、谁批准、发出的是哪一版，事后可查</text>
+          </g>
 
-      <!-- 屏 6 移动端 -->
-      <div class="screen">
-        <div class="s-bar"><i></i><i></i><i></i><b>随时随地被提醒 · 手机端</b><span>在客户身边，也能胸有成竹</span></div>
-        <div class="phone">
-          <div class="notch"></div>
-          <div class="d-soft" style="margin-bottom:8px"><b>🔔 今日提醒</b><span>9:30 见王总 · 画像与话术已备好</span></div>
-          <div class="d-soft" style="margin-bottom:8px"><b>⏰ 明日</b><span>李女士生日 · 建议发送关怀</span></div>
-          <div class="d-soft"><b>📈 本周</b><span>3 位客户进入深度沟通阶段</span></div>
-        </div>
-      </div>
+          <!-- ===== 屏 6 数据看板（真图表） ===== -->
+          <rect x="120" y="1538" width="800" height="446" rx="18" fill="url(#wbscr)" stroke="#dbe3f0" stroke-width="2"/>
+          <rect x="120" y="1538" width="800" height="42" rx="18" fill="url(#wbhero)"/>
+          <circle cx="146" cy="1559" r="4.5" fill="#8fb2ef"/><text x="160" y="1563" font-size="12" font-weight="700" fill="#fff">数据看板 · 一屏看清效率去哪儿了</text>
+          <text x="898" y="1563" text-anchor="end" font-size="11" fill="#a9badb">图中数值为示意数据</text>
 
+          <text x="152" y="1614" font-size="11.5" font-weight="700" fill="#0d1d35">图 A · 单条进件处理耗时（分钟）</text>
+          <line x1="152" y1="1740" x2="470" y2="1740" stroke="#dbe3f0" stroke-width="1.5"/>
+          <line x1="152" y1="1626" x2="152" y2="1740" stroke="#dbe3f0" stroke-width="1.5"/>
+          <g font-size="9" fill="#8195ba">
+            <text x="146" y="1744" text-anchor="end">0</text><text x="146" y="1706" text-anchor="end">5</text>
+            <text x="146" y="1668" text-anchor="end">10</text><text x="146" y="1630" text-anchor="end">15</text>
+          </g>
+          <rect x="186" y="1638" width="30" height="102" rx="4" fill="#8fb2ef"/>
+          <rect x="222" y="1730" width="30" height="10" rx="4" fill="#265dcc"/>
+          <text x="219" y="1756" text-anchor="middle" font-size="9" fill="#5a6b85">录入归档</text>
+          <rect x="300" y="1656" width="30" height="84" rx="4" fill="#8fb2ef"/>
+          <rect x="336" y="1732" width="30" height="8" rx="4" fill="#265dcc"/>
+          <text x="333" y="1756" text-anchor="middle" font-size="9" fill="#5a6b85">画像整理</text>
+          <rect x="414" y="1678" width="30" height="62" rx="4" fill="#8fb2ef"/>
+          <rect x="450" y="1736" width="30" height="4" rx="2" fill="#265dcc"/>
+          <text x="447" y="1756" text-anchor="middle" font-size="9" fill="#5a6b85">补记录</text>
+          <g font-size="9">
+            <rect x="152" y="1768" width="9" height="9" rx="2" fill="#8fb2ef"/><text x="166" y="1776" fill="#5a6b85">过去（人工）</text>
+            <rect x="246" y="1768" width="9" height="9" rx="2" fill="#265dcc"/><text x="260" y="1776" fill="#5a6b85">现在（AI 工作台）</text>
+          </g>
+
+          <text x="540" y="1614" font-size="11.5" font-weight="700" fill="#0d1d35">图 B · 一条消息的处理去哪了</text>
+          <circle cx="614" cy="1700" r="44" fill="none" stroke="#e8eefb" stroke-width="17"/>
+          <circle cx="614" cy="1700" r="44" fill="none" stroke="#265dcc" stroke-width="17" stroke-dasharray="221 55.5" transform="rotate(-90 614 1700)"/>
+          <text x="614" y="1698" text-anchor="middle" font-size="16" font-weight="800" fill="#0d1d35">4/5</text>
+          <text x="614" y="1714" text-anchor="middle" font-size="9" fill="#5a6b85">Agent 自动</text>
+          <g font-size="9.5" fill="#5a6b85">
+            <rect x="686" y="1672" width="10" height="10" rx="2" fill="#265dcc"/><text x="702" y="1681">Agent 自动 4 步</text>
+            <rect x="686" y="1694" width="10" height="10" rx="2" fill="#e8eefb"/><text x="702" y="1703">人批准 1 步</text>
+            <rect x="686" y="1716" width="10" height="10" rx="2" fill="#c98a1b"/><text x="702" y="1725">人工动作发生处</text>
+          </g>
+
+          <text x="152" y="1810" font-size="11.5" font-weight="700" fill="#0d1d35">图 C · 顾问经验沉淀月度累计（越用越聪明）</text>
+          <line x1="152" y1="1916" x2="880" y2="1916" stroke="#dbe3f0" stroke-width="1.5"/>
+          <polyline points="176,1902 300,1888 424,1872 548,1852 672,1840 796,1826 876,1820" fill="none" stroke="#265dcc" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <polyline points="176,1902 300,1888 424,1872 548,1852 672,1840 796,1826 876,1820 876,1916 176,1916" fill="#265dcc" opacity=".08" stroke="none"/>
+          <g fill="#265dcc">
+            <circle cx="176" cy="1902" r="3.5"/><circle cx="300" cy="1888" r="3.5"/><circle cx="424" cy="1872" r="3.5"/>
+            <circle cx="548" cy="1852" r="3.5"/><circle cx="672" cy="1840" r="3.5"/><circle cx="796" cy="1826" r="3.5"/><circle cx="876" cy="1820" r="3.5"/>
+          </g>
+          <g font-size="9" fill="#8195ba">
+            <text x="176" y="1934" text-anchor="middle">3 月</text><text x="300" y="1934" text-anchor="middle">4 月</text>
+            <text x="424" y="1934" text-anchor="middle">5 月</text><text x="548" y="1934" text-anchor="middle">6 月</text>
+            <text x="672" y="1934" text-anchor="middle">7 月</text><text x="796" y="1934" text-anchor="middle">8 月</text>
+            <text x="876" y="1934" text-anchor="middle">9 月</text>
+          </g>
+          <text x="500" y="1958" text-anchor="middle" font-size="10" fill="#8195ba">曲线仅示意"越用越聪明"的形状，非实测数据</text>
+          <text x="520" y="2004" text-anchor="middle" font-size="11" fill="#8195ba">单张连续长图 · 六屏界面示意 · 图中数值均为示意数据，实际以交付版本为准</text>
+        </g>
+      </svg>
+      <figcaption>工作台 / 客户画像 / Agent 矩阵 / 收件归属 / 话术合规 / 数据看板 —— 单张连续长图示意（设计稿级，非真实后台截图）</figcaption>
+    </figure>
+    <div class="trace-card">
+    <h3 class="p2-h3">可追溯表：界面上每条信息都能追到出处</h3>
+    <p class="sub" style="margin-bottom:16px">下表说明"界面上的一个结论是怎么来的"——这是示意样例，用于展示追溯链路，数值为示意数据。</p>
+    <table class="crit">
+      <thead><tr><th>界面上的信息</th><th>来源（出处）</th><th>时间</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>「子女明年留学」画像要素</td><td>微信聊天记录 · 王总</td><td>9/2 自动识别</td><td style="color:#12543a">已归档 · 可回溯原文</td></tr>
+        <tr><td>「不能亏本金」风险偏好</td><td>面谈纪要 7/30</td><td>7/30 自动提炼</td><td style="color:#12543a">已归档 · 可回溯原文</td></tr>
+        <tr><td>归属建议「这条信息属于王总」</td><td>识别 Agent 匹配 + 原文依据</td><td>进件后即时</td><td style="color:#12543a">已自动归属 · 存疑才提示人</td></tr>
+        <tr><td>话术草稿</td><td>画像要素「稳健增值 / 不能亏本金」</td><td>发送前自动起草</td><td style="color:#7c5a10">待人批准（唯一人工动作）</td></tr>
+        <tr><td>合规检查结论</td><td>规则库核验（风险词/收益承诺/绝对化表述）</td><td>发送前自动执行</td><td style="color:#12543a">全部通过</td></tr>
+        <tr><td>发出记录</td><td>沟通流水（谁批准、何时、哪一版）</td><td>发出即留痕</td><td style="color:#12543a">可事后审计</td></tr>
+      </tbody>
+    </table>
+    <p class="s-note">以上为界面示意（展示设计方向），实际交付以您的专属版本为准；图中与表中的数值均为示意数据，不代表任何真实客户信息。</p>
     </div>
-    <p class="s-note">以上为界面示意（展示设计方向），实际交付以您的专属版本为准。</p>
   </div>
 </section>
 
@@ -569,14 +642,14 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <p>不是"一个聊天机器人"，而是一支分工明确的 AI 团队，围绕您的客户开发全流程 7×24 待命——它们干活，您决策。</p>
     </div>
     <div class="agent-grid">
-      <div class="agent"><span class="ic">📥</span><b>收件 Agent</b><span>截图、口述、资料随手进，自动整理成规范素材</span><em>替您省：手工录入与摘抄</em></div>
-      <div class="agent"><span class="ic">🧭</span><b>识别 Agent</b><span>判断"这条信息是谁的"，给出依据与候选</span><em>替您省：翻记录辨认</em></div>
-      <div class="agent"><span class="ic">🧬</span><b>画像 Agent</b><span>提炼七类客户要点，标注出处、随谈随更</span><em>替您省：手工做笔记</em></div>
-      <div class="agent"><span class="ic">🛡</span><b>合规 Agent</b><span>敏感信息自动打码，AI 处理全程留痕</span><em>替您省：合规顾虑</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3v10M8 9l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>收件 Agent</b><span>截图、口述、资料随手进，自动整理成规范素材</span><em>替您省：手工录入与摘抄</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>识别 Agent</b><span>判断"这条信息是谁的"，给出依据与候选</span><em>替您省：翻记录辨认</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3v18M4 7.5l16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>画像 Agent</b><span>提炼七类客户要点，标注出处、随谈随更</span><em>替您省：手工做笔记</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 3.5v6c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5v-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>合规 Agent</b><span>敏感信息自动打码，AI 处理全程留痕</span><em>替您省：合规顾虑</em></div>
       <div class="agent"><span class="ic">⏰</span><b>提醒 Agent</b><span>生日、产品到期、子女升学等关键时点不漏</span><em>替您省：记性与日历</em></div>
-      <div class="agent"><span class="ic">💬</span><b>话术 Agent</b><span>按画像与场景起草沟通话术，人批准后使用</span><em>替您省：琢磨开场白</em></div>
-      <div class="agent"><span class="ic">📋</span><b>跟进 Agent</b><span>把每次沟通整理成时间线与待办清单</span><em>替您省：回忆与补记</em></div>
-      <div class="agent"><span class="ic">📚</span><b>沉淀 Agent</b><span>成功经验自动沉淀为模板，越用越顺手</span><em>替您省：重复摸索</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>话术 Agent</b><span>按画像与场景起草沟通话术，人批准后使用</span><em>替您省：琢磨开场白</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 4V3h6v1M9 10h6M9 14h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>跟进 Agent</b><span>把每次沟通整理成时间线与待办清单</span><em>替您省：回忆与补记</em></div>
+      <div class="agent"><span class="ic"><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h6v15H4zM14 5h6v15h-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>沉淀 Agent</b><span>成功经验自动沉淀为模板，越用越顺手</span><em>替您省：重复摸索</em></div>
     </div>
     <p class="note">矩阵式分工 = 多个 Agent 并行干活，互不等待；客户越多、越显威力——这正是"数十倍效率"的来源。</p>
   </div>
@@ -621,9 +694,9 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       </svg>
     </div>
     <div class="grid g3" style="margin-top:16px">
-      <div class="card"><h3>📚 经验自生长</h3><p>每次成功的沟通方式自动沉淀为您的模板库——"上次这么说客户认可了"，下次优先推荐。经验不再随人员流动而流失。</p></div>
-      <div class="card"><h3>🧬 画像自丰富</h3><p>每一次交流都让客户画像更深一层。用得越久，它对这位客户的理解越接近"老朋友"——而这些理解只属于您。</p></div>
-      <div class="card"><h3>🎯 策略自优化</h3><p>系统持续观察"哪些做法有效"：有效的话术、节奏、切入点被优先推荐；无效方式逐步淘汰。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h6v15H4zM14 5h6v15h-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 经验自生长</h3><p>每次成功的沟通方式自动沉淀为您的模板库——"上次这么说客户认可了"，下次优先推荐。经验不再随人员流动而流失。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3v18M4 7.5l16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 画像自丰富</h3><p>每一次交流都让客户画像更深一层。用得越久，它对这位客户的理解越接近"老朋友"——而这些理解只属于您。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 策略自优化</h3><p>系统持续观察"哪些做法有效"：有效的话术、节奏、切入点被优先推荐；无效方式逐步淘汰。</p></div>
     </div>
     <p class="note" style="font-size:13.5px"><b>第一周，它是好用的助手；三个月后，它比任何新同事都更懂您的客户和您的方法。</b>——而且它 7×24 不休息、不离职、不遗忘。</p>
   </div>
@@ -638,9 +711,9 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <p>不是所有人共用一套租来的系统——我们为每位私人财富顾问建立<b>独享的私有化部署</b>：您的客户资料、您的高清画像知识库、您积累的经验，全部是您个人的私有资产。</p>
     </div>
     <div class="grid g3">
-      <div class="card"><h3>🏛 独享私有化部署</h3><p>一套系统只服务您一位顾问。客户信息资料库完全私有，同行看不到、平台方看不到——您的客户名单就是您的核心资产，别人拿不走。</p></div>
-      <div class="card"><h3>🔬 高清晰度客户画像知识库</h3><p>每位客户都有一份持续变清晰的画像档案：投资偏好、家庭结构、人生节点、决策习惯……越用越细、越用越准，形成您独有的"客户理解库"。</p></div>
-      <div class="card"><h3>💎 私有经验资产</h3><p>您的成功话术、有效节奏、独门方法，沉淀在您自己的系统里持续复用与增值——经验不再只是"脑子里有"，而是可继承的个人资产。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8V5h8v3M9 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 独享私有化部署</h3><p>一套系统只服务您一位顾问。客户信息资料库完全私有，同行看不到、平台方看不到——您的客户名单就是您的核心资产，别人拿不走。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="10" r="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 14.5L21 20M11 7v6M8 10h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 高清晰度客户画像知识库</h3><p>每位客户都有一份持续变清晰的画像档案：投资偏好、家庭结构、人生节点、决策习惯……越用越细、越用越准，形成您独有的"客户理解库"。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 6-8 12L4 9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9h16M12 3l-3 6 3 12 3-12z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 私有经验资产</h3><p>您的成功话术、有效节奏、独门方法，沉淀在您自己的系统里持续复用与增值——经验不再只是"脑子里有"，而是可继承的个人资产。</p></div>
     </div>
   </div>
 </section>
@@ -677,12 +750,12 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <p>这六条不是口号，而是系统每天运行时的真实规则。</p>
     </div>
     <div class="grid g3">
-      <div class="card"><h3>🧭 关键决定永远由人做</h3><p>涉及隐私与重要判断的环节，系统只提供建议与草稿，最终由你点头才算数——AI 再聪明，也不替你做业务决定。</p></div>
-      <div class="card"><h3>🔗 每句话都能找到出处</h3><p>档案里的每一条信息，都能点开看它来自哪次沟通、什么时候说的——有据可查，随时可纠正。</p></div>
-      <div class="card"><h3>🛡 敏感信息先打码，再交给 AI</h3><p>手机号、身份证、银行卡这类信息，在离开你的系统之前自动打码；AI 处理的永远是"去敏感"后的内容。</p></div>
-      <div class="card"><h3>📜 全程留痕，随时可查</h3><p>每一次 AI 处理、每一次人工审核、每一处数据修改，都有完整记录——出了问题能查到、要向谁交代都能拿出来。</p></div>
-      <div class="card"><h3>🔌 不被任何一家 AI 绑架</h3><p>系统同时支持多家主流大模型，可随时切换、对比、回退——今天用这家、明天换那家，你的业务不受影响。</p></div>
-      <div class="card"><h3>🧱 永远不会停摆</h3><p>AI 服务出问题时自动切换到备用方案，业务不中断；所有异常都被记录和提醒，不会"悄无声息"地出错。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 关键决定永远由人做</h3><p>涉及隐私与重要判断的环节，系统只提供建议与草稿，最终由你点头才算数——AI 再聪明，也不替你做业务决定。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 每句话都能找到出处</h3><p>档案里的每一条信息，都能点开看它来自哪次沟通、什么时候说的——有据可查，随时可纠正。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 3.5v6c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5v-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 敏感信息先打码，再交给 AI</h3><p>手机号、身份证、银行卡这类信息，在离开你的系统之前自动打码；AI 处理的永远是"去敏感"后的内容。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h10l4 4v14H6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10h8M9 14h8M9 18h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 全程留痕，随时可查</h3><p>每一次 AI 处理、每一次人工审核、每一处数据修改，都有完整记录——出了问题能查到、要向谁交代都能拿出来。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 3v6M15 3v6M6 9h12v4a6 6 0 0 1-6 6 6 6 0 0 1-6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 不被任何一家 AI 绑架</h3><p>系统同时支持多家主流大模型，可随时切换、对比、回退——今天用这家、明天换那家，你的业务不受影响。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12h18M9 5v7M15 12v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 永远不会停摆</h3><p>AI 服务出问题时自动切换到备用方案，业务不中断；所有异常都被记录和提醒，不会"悄无声息"地出错。</p></div>
     </div>
   </div>
 </section>
@@ -754,7 +827,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
         <div class="p"><b>① 需求对齐</b><span>每个功能先谈清验收标准</span></div>
         <div class="p"><b>② AI 团队并行</b><span>多个智能体分工同时开发</span></div>
         <div class="p"><b>③ 交叉审查</b><span>每处改动都经交叉检查</span></div>
-        <div class="p"><b>④ 全量自测</b><span>698 项自动检查全部通过才放行</span></div>
+        <div class="p"><b>④ 全量自测</b><span>交付前的自动检查全部通过才放行</span></div>
         <div class="p"><b>⑤ 真人试用</b><span>浏览器里把每个流程真实走一遍</span></div>
         <div class="p"><b>⑥ 上线交付</b><span>部署、验收、持续守护</span></div>
       </div>
@@ -787,12 +860,68 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       </tbody>
     </table>
     <div class="grid g3" style="margin-top:18px">
-      <div class="card"><h3>📐 698 项自动化测试<sup class="fn">[5]</sup></h3><p>覆盖单元/集成/数据/流程/安全各层，全绿方可交付。</p></div>
-      <div class="card"><h3>🎯 90.9% 自动归属率<sup class="fn">[4]</sup></h3><p>端到端回放实测（内控阈值 ≥85%）。</p></div>
-      <div class="card"><h3>🖥 17 路由 0 白屏<sup class="fn">[6]</sup></h3><p>无头浏览器逐页真实渲染验证。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20L20 4v16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12v8M12 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 交付前自动检查全绿<sup class="fn">[5]</sup></h3><p>覆盖单元/集成/数据/流程/安全各层；任一层不通过即不放行。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 自动归属准确率 ≥ 90%<sup class="fn">[4]</sup></h3><p>这是验收线，不是实测读数：内控阈值 ≥85%，低于阈值转人工。</p></div>
+      <div class="card"><h3><svg class="ico-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 全部页面路由 0 白屏<sup class="fn">[6]</sup></h3><p>验收口径：无头浏览器逐页真实渲染，出现白屏或渲染错误即判红。</p></div>
     </div>
-    <p class="note">口径说明：上表为验收口径与验收线（设计目标值，将在合作中按您的业务基线校准）；下方三张卡为当前工程已实测的硬指标。全部数字的口径与取数时间见页尾「数字口径与来源清单」。</p>
-  </div>
+    <p class="note">口径说明：上表与下方三张卡均为<b>验收口径与验收线</b>，不是实测读数；所有指标可在合作中按您的环境与业务基线复测并出具报告。每个数字的来源系统、口径与取数时间见页尾「数字口径与来源清单」。</p>
+  
+<section class="acb" aria-label="AI Agent 开发能力">
+  <style>
+    .acb{
+      --acb-bg:#0b1120; --acb-line:rgba(255,255,255,.10); --acb-panel:rgba(255,255,255,.04);
+      --acb-hi:#E8F1FF; --acb-dim:#B9CEE8; --acb-cyan:#22d3ee; --acb-gold:#FFD84D; --acb-gold-bg:rgba(255,216,77,.14);
+      --acb-grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);
+      box-sizing:border-box; background:var(--acb-bg); color:var(--acb-hi); border-radius:14px;
+      padding:26px 26px 22px; margin:26px 0;
+      font:15px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+      font-variant-numeric:tabular-nums;
+    }
+    .acb *{box-sizing:border-box}
+    .acb h2{
+      font-size:19.5px; line-height:1.4; margin:0 0 10px; padding:0; border:0; color:var(--acb-hi); font-weight:700;
+      display:flex; align-items:center; gap:10px;
+    }
+    .acb .acb-dot{width:11px;height:11px;border-radius:50%;background:var(--acb-grad);flex:none;
+      box-shadow:0 0 0 4px rgba(34,211,238,.14),0 0 18px rgba(34,211,238,.7)}
+    .acb .acb-no{color:var(--acb-cyan);font-weight:700;margin-right:2px}
+    .acb p{margin:8px 0;color:var(--acb-dim);font-size:14.5px}
+    .acb p.acb-lead{color:var(--acb-hi);font-size:15px}
+    .acb mark{background:var(--acb-gold-bg);color:var(--acb-gold);padding:1px 4px;font-weight:700;box-decoration-break:clone}
+    .acb table{width:100%;border-collapse:collapse;margin:14px 0 4px}
+    .acb th,.acb td{text-align:left;vertical-align:top;padding:10px 12px;border-top:1px solid var(--acb-line);font-size:13.5px;line-height:1.7}
+    .acb thead th{border-top:0;color:var(--acb-cyan);font-size:12.5px;letter-spacing:.02em;background:var(--acb-panel)}
+    .acb th:first-child,.acb td:first-child{width:132px;color:var(--acb-hi);font-weight:700;white-space:nowrap}
+    .acb td{color:var(--acb-dim)}
+    .acb td b{color:var(--acb-hi);font-weight:700}
+    .acb .acb-foot{margin:12px 0 0;color:var(--acb-dim);font-size:12.5px}
+    @media (max-width:700px){
+      .acb{padding:20px 16px 18px;border-radius:12px}
+      .acb thead{display:none}
+      .acb tbody tr{display:block;border-top:1px solid var(--acb-line);padding:6px 0}
+      .acb td{display:block;border-top:0;padding:2px 0;width:auto}
+      .acb td:first-child{padding-bottom:4px}
+      .acb th:first-child,.acb td:first-child{white-space:normal}
+      .acb td b{white-space:nowrap}   /* 窄屏：数字与其单位不拆行（同时消掉 ≤3 字尾行碎片） */
+      .acb td, .acb thead th, .acb th:first-child, .acb td:first-child{text-wrap:balance}
+    }
+  </style>
+  <h2><span class="acb-dot"></span><span>AI Agent 开发能力：这套系统是怎么造出来的</span></h2>
+  <p class="acb-lead">这一页展示的不是"我们用了 AI"，而是<mark>我们把规则写成了会失败的机器检查</mark>：规则坏了，流水线直接红，谁也不能靠一句"我觉得没问题"发布。</p>
+  <table>
+    <thead><tr><th>能力</th><th>硬证据（都能复跑）</th></tr></thead>
+    <tbody>
+      <tr><td>六道自动门禁</td><td>每个改动发布前都要按顺序过六道：全量自检 → 页面逐屏自检 → 换人独立复核 → 真实场景复演 → 极端情况检查 → 前后台对表；一道不过，不许往下走。</td></tr>
+      <tr><td>破坏性测试</td><td>我们故意往流程里塞过 <b>18 种蒙混写法</b>，<mark>18 种全部被拦下</mark>——其中 6 种是独立复核时新发现的漏洞，发现后补齐了判据。</td></tr>
+      <tr><td>合并面门禁</td><td>在 <b>11,882 个文件</b>的合并面上实测：<b>拦下 2 处真问题</b>、<mark>误报 0 条</mark>——宁可少报，也不拿噪声淹没真问题。</td></tr>
+      <tr><td>一轮检查的代价</td><td>一轮主要检查跑完约 <b>20 分钟</b>（内部机器实测读数，随机器忙闲波动）；因此每个改动只在发布前跑一遍全量，不做无意义的重复消耗。</td></tr>
+      <tr><td>检查规模</td><td><b>4,905 项自动检查</b>，覆盖 <b>112 个真实场景</b>：不是抽查，是每次发布都重跑。</td></tr>
+      <tr><td>数字可复查</td><td>上面每个数字都留了复跑方式与取数时间；查不到出处的数字，我们一条都不写。</td></tr>
+    </tbody>
+  </table>
+  <p class="acb-foot">这套做法的直接好处：<mark>交付给你的不是一个"说法"，而是一条每次发布都会重跑的检查线</mark>。我们不做对照实验，也不写"提升 X 倍"这类无法复跑的话。</p>
+</section>
+</div>
 </section>
 
 <!-- 9 合规护栏 -->
@@ -865,14 +994,14 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
     <div class="src-list" id="sources" style="margin-top:40px">
       <h3>数字口径与来源清单</h3>
       <ol>
-        <li><b>[1] 手工录入约 15 分钟/条 · 整理约 30 分钟 · 记录约 15 分钟/条</b>——口径：传统方式（截图存相册→手工录入 CRM→逐条补记录）下每个动作的耗时；取数时间：2026-09，业务访谈口径，非逐条秒表实测。</li>
-        <li><b>[2] 传统方式一天重复性事务 ≈ 2 小时以上</b>——口径：把进件录入、画像整理、记录补录、提醒排期四类事务按上述单条耗时累加；取数时间：2026-09。</li>
-        <li><b>[3] 同样工作 ≈ 15 分钟 / 全天人工动作 ≤ 1 次</b>——口径：AI 工作台流程中"必须由人完成"的动作次数与耗时（对外沟通批准一处）；取数时间：2026-09，流程实测。</li>
-        <li><b>[4] 自动归属率 90.9%（内控阈值 ≥85%）</b>——口径：端到端回放中，系统给出的归属建议与人工判定一致的条数 ÷ 抽检条数；取数时间：2026-09，随版本迭代复测。</li>
-        <li><b>[5] 698 项自动化测试</b>——口径：交付前自动执行的单元/集成/数据/流程/安全检查条目数，全绿方可交付；取数时间：2026-09，随版本迭代只增不减。</li>
-        <li><b>[6] 17 条路由 0 白屏</b>——口径：无头浏览器对全部页面路由逐页真实渲染，出现白屏或渲染错误的路由数；取数时间：2026-09。</li>
+        <li><b>[1] 手工录入约 15 分钟/条 · 整理约 30 分钟 · 记录约 15 分钟/条</b>——<b>来源系统：非本工作台</b>（人工方式业务访谈估算，非逐条秒表实测）；口径：截图存相册→手工录入 CRM→逐条补记录各动作耗时；取数时间：2026-09。</li>
+        <li><b>[2] 传统方式一天重复性事务 ≈ 2 小时以上</b>——<b>来源系统：非本工作台</b>（由 [1] 单条耗时累加的业务访谈估算）；口径：进件录入、画像整理、记录补录、提醒排期四类事务累加；取数时间：2026-09。</li>
+        <li><b>[3] 同样工作 ≈ 15 分钟 / 全天人工动作 ≤ 1 次</b>——<b>来源系统：本工作台流程设计口径</b>（按流程定义"必须由人完成"的动作计数，非实测读数）；口径：对外沟通批准一处为唯一固定人工动作；取数时间：2026-09。</li>
+        <li><b>[4] 自动归属准确率验收线 ≥ 90%（内控阈值 ≥85%）</b>——<b>来源系统：本工作台验收口径</b>（验收线，非实测读数）；口径：抽检中系统归属建议与人工判定一致的条数 ÷ 抽检条数；低于阈值转人工。取数时间：2026-09。<b>说明：本页原「90.9% 自动归属率」为无本工作台证据支撑的读数，已撤下，改为只写验收线。</b></li>
+        <li><b>[5] 交付前自动检查全绿</b>——<b>来源系统：本工作台交付流程要求</b>（流程要求，非实测读数）；口径：单元/集成/数据/流程/安全检查任一层不通过即不放行。取数时间：2026-09。<b>说明：本页原「698 项自动化测试」为无本工作台证据支撑的读数，已撤下。</b></li>
+        <li><b>[6] 全部页面路由 0 白屏</b>——<b>来源系统：本工作台验收口径</b>（验收口径，非实测读数）；口径：无头浏览器对全部页面路由逐页真实渲染，出现白屏或渲染错误即判红。取数时间：2026-09。<b>说明：本页原「17 条路由」为无本工作台证据支撑的读数，已撤下。</b></li>
       </ol>
-      <p style="font-size:12px;color:var(--ink-soft);margin-top:12px">界面巡览中的界面截图与数值为示意数据，用于说明交互方式，不代表任何真实客户信息；未标注脚注的数字（时间点、客户数量等）为场景举例，不是指标承诺。</p>
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:12px">凡指不到本工作台自身证据的读数，本页一律只写口径与验收线、不放具体数值；如需具体读数，请在合作中按您的环境复测并出具报告。界面巡览中的界面截图与数值（如待办条数、匹配度、处理项数等）均为<b>界面示意数据</b>，用于说明交互方式，不代表任何真实客户信息与实测指标；未标注脚注的数字（时间点、客户数量等）为场景举例，不是指标承诺。</p>
     </div>
 
     <div class="sec-head" style="margin:40px 0 22px">
