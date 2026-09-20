@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Native 端到端智能体系统 · 能力展示</title>
-<meta name="description" content="以真实落地的 AI 智能体系统为样板：端到端流程、设计思想、合规护栏与可量化价值。">
+<title>私人财富顾问 AI 工作台 · 能力展示</title>
+<meta name="description" content="私人财富顾问 AI 工作台：专属 AI Agent 矩阵，高潜客户开发效率数十倍跃升。">
 <style>
 :root{
   --navy:#0d1d35; --navy-deep:#0a1628; --navy-2:#132a4a;
@@ -85,18 +85,49 @@ table.matrix tr:last-child td{border-bottom:none}
 .cta .box{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 .cta .box span{border:1px dashed rgba(143,178,239,.55);border-radius:10px;padding:10px 16px;font-size:13px;color:#dbe5f7}
 footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
+.vs{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
+.vs th,.vs td{padding:12px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.vs th{background:#f7f9fd;color:var(--navy);font-size:13px}
+.vs tr:last-child td{border-bottom:none}
+.vs .old{color:#8a5a5a;background:#fdf7f7}
+.vs .new{color:#12543a;background:#f4fbf7}
+.day{display:grid;gap:10px}
+.day .row{display:grid;grid-template-columns:74px 1.1fr 1fr 1fr;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;align-items:start;font-size:13px}
+.day .t{font-weight:800;color:var(--blue);font-size:14px}
+.day .scene{color:var(--ink);font-weight:600}
+.day .old-w{color:#8a5a5a}
+.day .new-w{color:#12543a}
+.day .old-w b,.day .new-w b{display:block;font-size:12px;margin-bottom:2px;opacity:.75;font-weight:700}
+.totals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.totals .t-card{border-radius:12px;padding:16px 18px;border:1px solid var(--line)}
+.totals .t-old{background:#fdf7f7}
+.totals .t-new{background:#f0f9f4}
+.totals .t-card b{font-size:22px;display:block;margin:4px 0}
+.totals .t-old b{color:#a05252}
+.totals .t-new b{color:#12784f}
+.agent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.agent{background:linear-gradient(165deg,#fff,#f5f9ff);border:1px solid #d8e2f4;border-radius:14px;padding:16px 15px;position:relative}
+.agent .ic{font-size:22px}
+.agent b{display:block;color:var(--navy);font-size:14px;margin:7px 0 5px}
+.agent span{font-size:12px;color:var(--ink-soft);display:block}
+.agent em{font-style:normal;display:block;margin-top:8px;font-size:11.5px;color:var(--blue);background:#eef3fd;border-radius:8px;padding:4px 8px}
 @media (max-width:960px){
   .g4,.g3{grid-template-columns:repeat(2,1fr)}
   .guard{grid-template-columns:repeat(2,1fr)}
   .hero h1{font-size:29px}
   .nav-links{display:none}
+  .day .row{grid-template-columns:64px 1fr}
+  .day .old-w,.day .new-w{grid-column:span 2}
+  .agent-grid{grid-template-columns:repeat(2,1fr)}
+  .totals{grid-template-columns:1fr}
 }
 @media (max-width:620px){
-  .g4,.g3,.guard{grid-template-columns:1fr}
+  .g4,.g3,.guard,.agent-grid{grid-template-columns:1fr}
   .badge{min-width:140px}
   section{padding:46px 0}
   .diagram svg{min-width:860px}
   .diagram{-webkit-overflow-scrolling:touch}
+  .vs{font-size:12.5px}
 }
 </style>
 </head>
@@ -104,14 +135,12 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand"><i></i>AI Native 智能体系统 · 能力展示</div>
+    <div class="brand"><i></i>私人财富顾问 AI 工作台</div>
     <nav class="nav-links">
-      <a href="#overview">系统全景</a>
-      <a href="#flow">端到端流程</a>
-      <a href="#native">设计原则</a>
-      <a href="#arch">工作方式</a>
-      <a href="#matrix">功能全景</a>
-      <a href="#agent">AI 交付力</a>
+      <a href="#day">使用场景</a>
+      <a href="#agents">Agent 矩阵</a>
+      <a href="#versus">对比传统 CRM</a>
+      <a href="#matrix">全量功能</a>
       <a href="#value">量化价值</a>
       <a href="#guard">合规护栏</a>
       <a href="#cta">合作</a>
@@ -121,13 +150,14 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 
 <div class="hero">
   <div class="wrap">
-    <p class="eyebrow">端到端 · AI NATIVE · 合规内建</p>
-    <h1>用 AI Agent，把「信息」变成「业务动作」</h1>
-    <p class="lead">以真实落地的智能体工作台为样板（高潜客户跟进场景）：从多渠道信息进入、智能归属、画像提炼、人审把关，到跟进与转化闭环——全链路可追溯、可审计、可量化。系统由 AI 智能体团队开发与验证，交付标准可查。</p>
+    <p class="eyebrow">私人财富顾问的专属 AI 团队 · 效率数十倍跃升</p>
+    <h1>私人财富顾问 AI 工作台</h1>
+    <p class="lead">别再只用一个"存资料的系统"。在这里，每位顾问都拥有一支专属 AI Agent 矩阵——收件、识别、提炼、把关、提醒、话术各司其职，7×24 待命。您负责判断与决策，杂活交给 AI 团队：同样的时间里，能深度开发的客户多出数十倍。</p>
     <div class="badges">
-      <div class="badge"><b>8 大模块</b><span>端到端业务流程全覆盖</span></div>
-      <div class="badge"><b>698 项</b><span>自动化测试全绿（真实交付基线）</span></div>
-      <div class="badge"><b>90.9%</b><span>消息自动归属率（端到端实测）</span></div>
+      <div class="badge"><b>1 位顾问 · 8 个 AI Agent</b><span>专属矩阵 7×24 待命</span></div>
+      <div class="badge"><b>每天省 ≈ 2 小时</b><span>杂务 2 小时 → 15 分钟</span></div>
+      <div class="badge"><b>数十倍</b><span>深度开发客户的效率跃升</span></div>
+      <div class="badge"><b>698 项 · 90.9%</b><span>质量自检全绿 · 自动归属实测</span></div>
     </div>
   </div>
 </div>
@@ -148,8 +178,9 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
           </linearGradient>
         </defs>
         <circle cx="500" cy="280" r="86" fill="url(#core)"/>
-        <text x="500" y="270" text-anchor="middle" fill="#fff" font-size="17" font-weight="700">智能体工作台</text>
-        <text x="500" y="294" text-anchor="middle" fill="#a9badb" font-size="12">人在回路 · 全链路可追溯</text>
+        <text x="500" y="262" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">私人财富顾问</text>
+        <text x="500" y="284" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">AI 工作台</text>
+        <text x="500" y="306" text-anchor="middle" fill="#a9badb" font-size="12">专属 Agent 矩阵 · 7×24 待命</text>
         <!-- 八分支 -->
         <g stroke="#c4d6f5" stroke-width="1.6" fill="none">
           <path d="M500 194 L500 96"/><path d="M560 228 L690 140"/><path d="M586 280 L760 280"/>
@@ -196,6 +227,84 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
         <span><i class="dot" style="background:#c98a1b"></i>合规控制点</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- A 使用场景：顾问的一天 -->
+<section id="day">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">A DAY WITH THE WORKBENCH</p>
+      <h2>使用场景：私人财富顾问的一天，是这样过的</h2>
+      <p>同样的一天、同样的客户——左边是过去（传统方式 + 普通 CRM），右边是用了私人财富顾问 AI 工作台之后。</p>
+    </div>
+    <div class="day">
+      <div class="row"><div class="t">08:45</div><div class="scene">昨晚客户微信里聊到"想给孩子存留学钱"</div>
+        <div class="old-w"><b>传统方式</b>先截图存相册，等有空再翻出来手工记到 CRM 表格里，约 15 分钟/条</div>
+        <div class="new-w"><b>AI 工作台</b>截图丢进系统 → 自动识别是谁、提炼成画像要点 → 您点一下"确认"，约 1 分钟</div></div>
+      <div class="row"><div class="t">09:30</div><div class="scene">上午要见一位重要客户，得先"备课"</div>
+        <div class="old-w"><b>传统方式</b>翻聊天记录、翻笔记、拼凑记忆，约 30 分钟</div>
+        <div class="new-w"><b>AI 工作台</b>打开客户画像 360——投资偏好、家庭情况、最近动态、来源出处一屏看完，3 分钟</div></div>
+      <div class="row"><div class="t">14:00</div><div class="scene">有新消息进来，不知道该归到哪位客户</div>
+        <div class="old-w"><b>传统方式</b>靠记忆判断，容易归错、漏记</div>
+        <div class="new-w"><b>AI 工作台</b>系统给出"最可能是谁"的建议与依据，您一键确认或改选，5 秒一条</div></div>
+      <div class="row"><div class="t">16:30</div><div class="scene">系统提醒：某客户的产品下周到期</div>
+        <div class="old-w"><b>传统方式</b>靠日历和记性，常常错过最佳时机</div>
+        <div class="new-w"><b>AI 工作台</b>自动提醒 + 按该客户画像生成沟通建议 → 您改两句即可使用，人批准才发出</div></div>
+      <div class="row"><div class="t">18:00</div><div class="scene">收工前补今天 5 条跟进记录</div>
+        <div class="old-w"><b>传统方式</b>逐条回忆、逐字敲，约 15 分钟/条、还容易漏</div>
+        <div class="new-w"><b>AI 工作台</b>口述两句 → AI 整理成规范记录 → 确认即存；有"下一步"的自动进待办，2 分钟/条</div></div>
+    </div>
+    <div class="totals">
+      <div class="t-card t-old"><span>传统方式 + 普通 CRM：一天的重复杂务</span><b>≈ 2 小时以上</b><span style="font-size:12.5px">还伴随漏记、归错、错过时机</span></div>
+      <div class="t-card t-new"><span>私人财富顾问 AI 工作台：同样工作</span><b>≈ 15 分钟</b><span style="font-size:12.5px">记录更全、画像更细、时机不漏</span></div>
+    </div>
+    <p class="note">省下的不是"几分钟"，而是整个人的注意力——把时间还给高净值客户的深度经营。</p>
+  </div>
+</section>
+
+<!-- B Agent 矩阵 -->
+<section id="agents" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">YOUR PRIVATE AGENT MATRIX</p>
+      <h2>一个人 = 一支 AI 团队：专属于您的 Agent 矩阵</h2>
+      <p>不是"一个聊天机器人"，而是一支分工明确的 AI 团队，围绕您的客户开发全流程 7×24 待命——它们干活，您决策。</p>
+    </div>
+    <div class="agent-grid">
+      <div class="agent"><span class="ic">📥</span><b>收件 Agent</b><span>截图、口述、资料随手进，自动整理成规范素材</span><em>替您省：手工录入与摘抄</em></div>
+      <div class="agent"><span class="ic">🧭</span><b>识别 Agent</b><span>判断"这条信息是谁的"，给出依据与候选</span><em>替您省：翻记录辨认</em></div>
+      <div class="agent"><span class="ic">🧬</span><b>画像 Agent</b><span>提炼七类客户要点，标注出处、随谈随更</span><em>替您省：手工做笔记</em></div>
+      <div class="agent"><span class="ic">🛡</span><b>合规 Agent</b><span>敏感信息自动打码，AI 处理全程留痕</span><em>替您省：合规顾虑</em></div>
+      <div class="agent"><span class="ic">⏰</span><b>提醒 Agent</b><span>生日、产品到期、子女升学等关键时点不漏</span><em>替您省：记性与日历</em></div>
+      <div class="agent"><span class="ic">💬</span><b>话术 Agent</b><span>按画像与场景起草沟通话术，人批准后使用</span><em>替您省：琢磨开场白</em></div>
+      <div class="agent"><span class="ic">📋</span><b>跟进 Agent</b><span>把每次沟通整理成时间线与待办清单</span><em>替您省：回忆与补记</em></div>
+      <div class="agent"><span class="ic">📚</span><b>沉淀 Agent</b><span>成功经验自动沉淀为模板，越用越顺手</span><em>替您省：重复摸索</em></div>
+    </div>
+    <p class="note">矩阵式分工 = 多个 Agent 并行干活，互不等待；客户越多、越显威力——这正是"数十倍效率"的来源。</p>
+  </div>
+</section>
+
+<!-- C 对比传统 CRM -->
+<section id="versus">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">WHY NOT A TRADITIONAL CRM</p>
+      <h2>为什么它和"传统 SaaS CRM"完全不是一回事</h2>
+      <p>传统 CRM 让顾问"为系统打工"；私人财富顾问 AI 工作台让 AI 为顾问打工。</p>
+    </div>
+    <table class="vs">
+      <thead><tr><th style="width:16%">对比维度</th><th style="width:42%">传统 SaaS CRM</th><th style="width:42%">私人财富顾问 AI 工作台</th></tr></thead>
+      <tbody>
+        <tr><td><b>信息录入</b></td><td class="old">手工填表、事后补录，录不完、记不全</td><td class="new">截图/口述随手进，AI 自动整理归档</td></tr>
+        <tr><td><b>客户画像</b></td><td class="old">几个固定标签字段，千人一面</td><td class="new">七维细颗粒画像，随谈随更，每项可溯源</td></tr>
+        <tr><td><b>跟进提醒</b></td><td class="old">靠日历与记性，时机常错过</td><td class="new">关键时点自动提醒，待办按天排好</td></tr>
+        <tr><td><b>AI 能力</b></td><td class="old">无，或挂一个通用聊天插件</td><td class="new">专属 Agent 矩阵，多任务并行执行</td></tr>
+        <tr><td><b>顾问的角色</b></td><td class="old">录入员 + 记录员</td><td class="new">决策者 + 客户关系的主人</td></tr>
+        <tr><td><b>每天杂务时间</b></td><td class="old">2 小时以上</td><td class="new">15 分钟左右</td></tr>
+        <tr><td><b>可深度开发的客户量</b></td><td class="old">被杂务锁死在个位数</td><td class="new">在同等时间内成倍乃至数十倍扩展</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -360,7 +469,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 
 <footer>
   <div class="wrap">
-    <p>本页为能力展示材料 · 样板系统：高潜客户跟进智能体工作台 · 页面数据为设计验收口径与工程实测指标 · 不含任何真实客户信息。</p>
+    <p>本页为能力展示材料 · 系统：私人财富顾问 AI 工作台 · 页面指标为设计目标与实测表现；效率对比为基于试点口径的推演（以合作中业务基线评测为准）· 不含任何真实客户信息。</p>
   </div>
 </footer>
 
