@@ -14,7 +14,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;text-wrap:pretty}
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
 /* ---------- 统一顶栏（与 AI 招聘页 pitch 同款；令牌就近作用域，不影响页面既有配色） ---------- */
 header.nav{
@@ -22,7 +22,7 @@ header.nav{
   --nv-txt-dim:#94a3b8; --nv-txt-hi:#e8eef8; --nv-cyan:#22d3ee;
   --nv-grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);
   position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(11,17,32,.78);
+  background:rgba(11,17,32,.92);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--nv-line);
 }
@@ -46,7 +46,7 @@ header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
 .hero p.lead{color:#cdd8ec;font-size:16px;max-width:760px}
 .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;position:relative;z-index:2}
 .badge{background:rgba(255,255,255,.08);border:1px solid rgba(143,178,239,.35);border-radius:12px;padding:13px 18px;min-width:170px}
-.badge b{display:block;font-size:24px;color:#fff}
+.badge b{display:block;font-size:15.5px;font-weight:800;color:#fff;letter-spacing:.2px;margin-bottom:3px}
 .badge span{font-size:12.5px;color:#a9badb}
 section{padding:64px 0}
 section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -80,6 +80,15 @@ table.matrix{width:100%;border-collapse:collapse;background:#fff;border:1px soli
 table.matrix th,table.matrix td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 table.matrix th{background:#f7f9fd;color:var(--navy);font-size:12.5px;letter-spacing:.5px}
 table.matrix tr:last-child td{border-bottom:none}
+/* 窄屏：全量功能表纵向堆叠，避免首列被挤成单字宽（孤字） */
+@media (max-width:620px){
+  table.matrix thead{display:none}
+  table.matrix,table.matrix tbody,table.matrix tr,table.matrix td{display:block;width:auto}
+  table.matrix tr{border-bottom:1px solid var(--line);padding:8px 0}
+  table.matrix tr:last-child{border-bottom:none}
+  table.matrix td{border-bottom:none;padding:6px 14px}
+  table.matrix td:first-child{font-weight:800;color:var(--navy);background:#f7f9fd;font-size:13.5px}
+}
 .metrics{display:grid;gap:12px}
 .metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .metric .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px;color:var(--navy);font-weight:600}
@@ -95,11 +104,29 @@ table.matrix tr:last-child td{border-bottom:none}
 .guard .g{background:linear-gradient(170deg,#fff,#f4f8ff);border:1px solid var(--line);border-radius:12px;padding:16px 14px}
 .guard .g b{display:block;color:var(--navy);font-size:13.5px;margin-bottom:6px}
 .guard .g span{font-size:12px;color:var(--ink-soft)}
-.cta{background:linear-gradient(150deg,var(--navy) 0%,#12305c 100%);color:#fff;border-radius:18px;padding:40px 36px}
-.cta h2{font-size:24px;margin-bottom:12px}
-.cta p{color:#c7d3e9;font-size:14.5px;max-width:760px}
-.cta .box{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-.cta .box span{border:1px dashed rgba(143,178,239,.55);border-radius:10px;padding:10px 16px;font-size:13px;color:#dbe5f7}
+/* ---------- P0：统一收尾（服务能力 / 联系 / 渐变 CTA） ---------- */
+.svc{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.svc li{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:16px 18px}
+.svc b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:4px}
+.svc span{font-size:13.5px;color:var(--ink-soft)}
+.contact-block{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.contact-block b{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:4px}
+.contact-block span{font-size:15px;color:var(--ink);font-weight:700}
+.cta-final{margin-top:32px}
+/* 窄屏：对比表改为纵向堆叠，避免首列被挤成单字宽 */
+@media (max-width:620px){
+  .vs thead{display:none}
+  .vs,.vs tbody,.vs tr,.vs td{display:block;width:auto}
+  .vs tr{border-bottom:1px solid var(--line);padding:8px 0}
+  .vs tr:last-child{border-bottom:none}
+  .vs td{border-bottom:none;padding:6px 16px}
+  .vs td:first-child{font-weight:800;color:var(--navy);font-size:14px;background:#f7f9fd}
+  .vs .old::before{content:"传统方式 · ";font-weight:800}
+  .vs .new::before{content:"本系统 · ";font-weight:800}
+}
+.btn-grad{display:inline-block;padding:14px 34px;border-radius:11px;font-size:15px;font-weight:800;background:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);color:#06111d;text-decoration:none;box-shadow:0 12px 30px rgba(38,93,204,.24)}
+.btn-grad:hover{filter:brightness(1.08)}
+@media (max-width:620px){.svc,.contact-block{grid-template-columns:1fr}}
 footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 .vs{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
 .vs th,.vs td{padding:12px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
@@ -211,9 +238,9 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <a href="#matrix">全量功能</a>
       <a href="#value">量化价值</a>
       <a href="#guard">合规护栏</a>
-      <a href="#cta">合作</a>
+      <a href="#contact">合作</a>
     </nav>
-    <a class="nav-cta" href="#cta">预约演示</a>
+    <a class="nav-cta" href="#contact">预约演示</a>
   </div>
 </header>
 
@@ -223,11 +250,11 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
     <h1>私人财富顾问 AI 工作台</h1>
     <p class="lead">别再只用一个"存资料的系统"。在这里，每位顾问都拥有一支专属 AI Agent 矩阵——收件、识别、提炼、把关、提醒、话术各司其职，7×24 待命。您负责判断与决策，杂活交给 AI 团队：同样的时间里，能深度开发的客户多出数十倍。<b>更关键的是——它会随着您的使用越变越聪明，长成只属于您的专家系统。</b></p>
     <div class="badges">
-      <div class="badge"><b>1 位顾问 · 8 个 AI Agent</b><span>专属矩阵 7×24 待命</span></div>
-      <div class="badge"><b>每天省 ≈ 2 小时</b><span>杂务 2 小时 → 15 分钟</span></div>
-      <div class="badge"><b>数十倍</b><span>深度开发客户的效率跃升</span></div>
-      <div class="badge"><b>私有化部署</b><span>客户资料与画像库只属于您</span></div>
-      <div class="badge"><b>698 项 · 90.9%</b><span>质量自检全绿 · 自动归属实测</span></div>
+      <div class="badge"><b>端到端闭环</b><span>信息进门 → 梳理 → 方案 → 转化，一条流程跑完</span></div>
+      <div class="badge"><b>多 Agent 矩阵</b><span>8 个 AI Agent 分工协作，7×24 待命</span></div>
+      <div class="badge"><b>结论可追溯</b><span>每条画像与建议可回溯到原始进件</span></div>
+      <div class="badge"><b>越用越聪明</b><span>顾问经验沉淀成只属于您的专家系统</span></div>
+      <div class="badge"><b>全部已上线运行</b><span>本页能力均在真实业务中交付使用</span></div>
     </div>
   </div>
 </div>
@@ -586,7 +613,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
     </div>
     <div class="grid g3">
       <div class="card"><h3>🏛 独享私有化部署</h3><p>一套系统只服务您一位顾问。客户信息资料库完全私有，同行看不到、平台方看不到——您的客户名单就是您的核心资产，别人拿不走。</p></div>
-      <div class="card"><h3>🔬 高清晰度画像知识库</h3><p>每位客户都有一份持续变清晰的画像档案：投资偏好、家庭结构、人生节点、决策习惯……越用越细、越用越准，形成您独有的"客户理解库"。</p></div>
+      <div class="card"><h3>🔬 高清晰度客户画像知识库</h3><p>每位客户都有一份持续变清晰的画像档案：投资偏好、家庭结构、人生节点、决策习惯……越用越细、越用越准，形成您独有的"客户理解库"。</p></div>
       <div class="card"><h3>💎 私有经验资产</h3><p>您的成功话术、有效节奏、独门方法，沉淀在您自己的系统里持续复用与增值——经验不再只是"脑子里有"，而是可继承的个人资产。</p></div>
     </div>
   </div>
@@ -597,19 +624,19 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">WHY NOT A TRADITIONAL CRM</p>
-      <h2>为什么它和"传统 SaaS CRM"完全不是一回事</h2>
-      <p>传统 CRM 让顾问"为系统打工"；私人财富顾问 AI 工作台让 AI 为顾问打工。</p>
+      <h2>传统方式 vs 本系统：七个维度逐行对打</h2>
+      <p>左列是"手工录入 + 传统 SaaS CRM"的常规做法，右列是私人财富顾问 AI 工作台的实际动作差异。</p>
     </div>
     <table class="vs">
-      <thead><tr><th style="width:16%">对比维度</th><th style="width:42%">传统 SaaS CRM</th><th style="width:42%">私人财富顾问 AI 工作台</th></tr></thead>
+      <thead><tr><th>对比维度</th><th>传统方式（人工 + 传统 CRM）</th><th>私人财富顾问 AI 工作台</th></tr></thead>
       <tbody>
-        <tr><td><b>信息录入</b></td><td class="old">手工填表、事后补录，录不完、记不全</td><td class="new">截图/口述随手进，AI 自动整理归档</td></tr>
-        <tr><td><b>客户画像</b></td><td class="old">几个固定标签字段，千人一面</td><td class="new">七维细颗粒画像，随谈随更，每项可溯源</td></tr>
-        <tr><td><b>跟进提醒</b></td><td class="old">靠日历与记性，时机常错过</td><td class="new">关键时点自动提醒，待办按天排好</td></tr>
-        <tr><td><b>AI 能力</b></td><td class="old">无，或挂一个通用聊天插件</td><td class="new">专属 Agent 矩阵，多任务并行执行</td></tr>
-        <tr><td><b>顾问的角色</b></td><td class="old">录入员 + 记录员</td><td class="new">决策者 + 客户关系的主人</td></tr>
-        <tr><td><b>每天杂务时间</b></td><td class="old">2 小时以上</td><td class="new">15 分钟左右</td></tr>
-        <tr><td><b>可深度开发的客户量</b></td><td class="old">被杂务锁死在个位数</td><td class="new">在同等时间内成倍乃至数十倍扩展</td></tr>
+        <tr><td>信息从哪来</td><td class="old">顾问手工填表、见完客户再补录，进件散落在聊天记录与纸质笔记里</td><td class="new">客户截图与口述随手进件，AI 自动识别客户、字段与时间并归档</td></tr>
+        <tr><td>人要做多少</td><td class="old">录入、整理、归档、设提醒全由顾问手动完成，一天杂务占用两小时以上</td><td class="new">人只做判断与决策，收件、提炼、归档与提醒由 Agent 完成后交人确认</td></tr>
+        <tr><td>出结果要多久</td><td class="old">见完客户当天未必整理得完，客户画像要攒几天才成形</td><td class="new">进件即结构化，当场生成画像与风险提示，当天可据此安排下一次沟通</td></tr>
+        <tr><td>一次能并行几条线</td><td class="old">一位顾问同一时间只能跟进一位客户，多客户并行就靠加班</td><td class="new">8 个 Agent 同时处理多位客户的收件、提炼、把关与提醒</td></tr>
+        <tr><td>结论能不能追溯</td><td class="old">结论记在本子上，来源与时间对不上，换人接手就无法解释依据</td><td class="new">每条画像与建议可回溯到原始进件与处理动作，审计链条完整</td></tr>
+        <tr><td>经验会不会沉淀</td><td class="old">经验在顾问个人脑子里，人走经验走，新人重头摸索</td><td class="new">话术与判断标准沉淀进专属知识库，越用越贴合本人风格</td></tr>
+        <tr><td>换个岗位要不要重学</td><td class="old">换人或换岗接手，要重新摸一遍客户情况与历史沟通</td><td class="new">客户档案与待办完整交接，新人按同一套看板接手，历史随客户可查</td></tr>
       </tbody>
     </table>
   </div>
@@ -678,7 +705,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <thead><tr><th style="width:18%">能力域</th><th style="width:48%">系统做什么</th><th style="width:34%">对你的价值</th></tr></thead>
       <tbody>
         <tr><td><b>收件与归属</b></td><td>客户信息从截图、口述、表格等多个入口进入；系统自动判断"这条信息是谁的"并给出建议，你一键确认或改选；新面孔可顺手建档。</td><td>不用手工摘抄、不用翻聊天记录找线索，信息自动归到对的人名下。</td></tr>
-        <tr><td><b>客户画像</b></td><td>为每位客户建立私有化部署中的<b>高清晰度画像知识库</b>——投资偏好、风险偏好、家庭与人生事件、兴趣爱好、决策动因、情绪信号；每条信息可追溯到"哪次沟通说的"，敏感内容自动打码。</td><td>客户情况一目了然，聊什么、怎么聊心里有数；画像越用越清晰。</td></tr>
+        <tr><td><b>客户画像</b></td><td>为每位客户建立私有化部署中的<b>高清晰度客户画像知识库</b>——投资偏好、风险偏好、家庭与人生事件、兴趣爱好、决策动因、情绪信号；每条信息可追溯到"哪次沟通说的"，敏感内容自动打码。</td><td>客户情况一目了然，聊什么、怎么聊心里有数；画像越用越清晰。</td></tr>
         <tr><td><b>人审与合规</b></td><td>系统提炼的每条要点先进入"待确认"队列由你把关；涉及隐私的内容强制人工审核；每一次 AI 处理都有完整记录。</td><td>AI 帮你干活，但绝不替你拍板；每一步都合规、可交代。</td></tr>
         <tr><td><b>跟进与转化</b></td><td>客户的重要时点自动提醒（生日、产品到期、子女升学……）；每次沟通记录成时间线；待办清单清晰列出"今天该联系谁"；客户转化进度一目了然。</td><td>该跟进的一个不漏，节奏不乱，转化过程看得见。</td></tr>
         <tr><td><b>话术与知识</b></td><td>根据客户画像与场景自动生成沟通话术建议，经合规检查与你批准后才使用；成功的沟通经验自动沉淀为可复用模板。</td><td>开口有话、越聊越顺，经验留在自己手里持续增值。</td></tr>
@@ -757,20 +784,31 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   </div>
 </section>
 
-<!-- 10 迁移与 CTA -->
-<section id="cta" class="alt">
+<!-- 10 收尾：服务能力 / 联系 / 预约演示（P0） -->
+<section id="contact" class="alt">
   <div class="wrap">
-    <div class="cta">
-      <h2>这套能力，可以迁移到您的业务场景</h2>
-      <p>「多渠道信息进件 → AI 结构化 → 人审把关 → 业务动作 → 数据闭环」的骨架与行业无关：金融客户经营、教育招生跟进、医疗服务随访、制造业渠道管理……替换业务规则与画像模板即可复用。</p>
-      <div class="box">
-        <span>✔ 端到端交付：从需求到上线到验收</span>
-        <span>✔ 可验证工程标准：测试与走查全留痕</span>
-        <span>✔ 合规内建：红线以代码强制</span>
-        <span>✔ AI 智能体团队开发：同等规模更快迭代</span>
-      </div>
-      <p style="margin-top:22px">合作与演示预约：[联系方式占位]</p>
+    <div class="sec-head">
+      <p class="kicker">SERVICE &amp; CONTACT</p>
+      <h2>服务能力：交付、陪跑、培训与响应口径</h2>
+      <p>能力可迁移到相邻场景：「多渠道信息进件 → AI 结构化 → 人审把关 → 业务动作 → 数据闭环」的骨架与行业无关，替换业务规则与画像模板即可复用。以下是我们的服务与响应口径。</p>
     </div>
+    <ul class="svc">
+      <li><b>交付</b><span>从需求到上线按里程碑交付可用版本，每个里程碑附可复跑的验收证据与产物清单。</span></li>
+      <li><b>陪跑</b><span>上线后按周复盘真实使用数据，与顾问团队一起调整业务规则、画像模板与提醒策略。</span></li>
+      <li><b>培训</b><span>为顾问与运营各出一套上手材料，含真实客户场景演练，新人按同一套流程接手。</span></li>
+      <li><b>响应口径</b><span>工作时间内的问题当日响应；影响客户跟进的问题优先处理并同步处理进展。</span></li>
+    </ul>
+
+    <div class="sec-head" style="margin:40px 0 22px">
+      <h2>联系：预约演示与合作</h2>
+      <p>我们会用您的真实业务场景，现场跑一遍从信息进门到方案生成的完整流程。</p>
+    </div>
+    <div class="contact-block">
+      <div><b>电话</b><span>[联系电话占位]</span></div>
+      <div><b>微信</b><span>[微信号占位]</span></div>
+      <div><b>邮箱</b><span>[联系邮箱占位]</span></div>
+    </div>
+    <div class="cta-final"><a class="btn-grad" href="#contact">预约演示</a></div>
   </div>
 </section>
 
