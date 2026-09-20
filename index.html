@@ -13,17 +13,33 @@
   --ok:#1f9d63; --warn:#c98a1b; --plan:#7a5bd0;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-header.nav{position:sticky;top:0;z-index:50;background:rgba(13,29,53,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav-inner{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{color:#fff;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;gap:9px;font-size:15px}
-.brand i{width:9px;height:9px;border-radius:50%;background:var(--blue-soft);display:inline-block}
-.nav-links{display:flex;gap:16px;flex-wrap:wrap}
-.nav-links a{color:#cdd8ec;text-decoration:none;font-size:13px;opacity:.9}
-.nav-links a:hover{color:#fff}
-.hero{background:linear-gradient(150deg,var(--navy-deep) 0%,var(--navy) 55%,#12305c 100%);color:#fff;padding:74px 0 60px;position:relative;overflow:hidden}
+/* ---------- 统一顶栏（与 AI 招聘页 pitch 同款；令牌就近作用域，不影响页面既有配色） ---------- */
+header.nav{
+  --nv-bg:#0b1120; --nv-panel-2:rgba(255,255,255,.06); --nv-line:rgba(255,255,255,.10);
+  --nv-txt-dim:#94a3b8; --nv-txt-hi:#e8eef8; --nv-cyan:#22d3ee;
+  --nv-grad:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%);
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(11,17,32,.78);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--nv-line);
+}
+header.nav .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;gap:18px}
+header.nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--nv-txt-hi);font-size:15px;white-space:nowrap;line-height:1.4;letter-spacing:.5px}
+header.nav .brand .nm{white-space:nowrap}
+header.nav .brand .short{display:none}
+header.nav .brand .dot{margin:0;width:11px;height:11px;border-radius:50%;background:var(--nv-grad);box-shadow:0 0 0 4px rgba(34,211,238,.14),0 0 18px rgba(34,211,238,.7);flex:none}
+header.nav .brand .sub{margin:0;color:var(--nv-txt-dim);font-weight:500;font-size:12.5px;letter-spacing:0;line-height:1.4}
+header.nav .nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
+header.nav .nav-links::-webkit-scrollbar{display:none}
+header.nav .nav-links a{padding:7px 11px;border-radius:8px;font-size:13px;color:var(--nv-txt-dim);white-space:nowrap;text-decoration:none;opacity:1;transition:background .2s,color .2s}
+header.nav .nav-links a:hover{background:var(--nv-panel-2);color:var(--nv-txt-hi);text-decoration:none}
+header.nav .nav-links a.active{background:rgba(34,211,238,.13);color:#a5f3fc}
+header.nav .nav-cta{margin-left:8px;padding:8px 15px;border-radius:9px;font-size:13px;font-weight:600;background:var(--nv-grad);color:#06111d;white-space:nowrap;flex:none;text-decoration:none}
+header.nav .nav-cta:hover{text-decoration:none;filter:brightness(1.08)}
+.hero{background:linear-gradient(150deg,var(--navy-deep) 0%,var(--navy) 55%,#12305c 100%);color:#fff;padding:138px 0 60px;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(38,93,204,.45),transparent 70%)}
 .hero .eyebrow{color:var(--blue-soft);font-size:13px;letter-spacing:2px;margin-bottom:14px}
 .hero h1{font-size:40px;line-height:1.25;letter-spacing:.5px;margin-bottom:16px;font-weight:800}
@@ -154,7 +170,6 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   .g4,.g3{grid-template-columns:repeat(2,1fr)}
   .guard{grid-template-columns:repeat(2,1fr)}
   .hero h1{font-size:29px}
-  .nav-links{display:none}
   .day .row{grid-template-columns:64px 1fr}
   .day .old-w,.day .new-w{grid-column:span 2}
   .agent-grid{grid-template-columns:repeat(2,1fr)}
@@ -168,14 +183,26 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   .diagram{-webkit-overflow-scrolling:touch}
   .vs{font-size:12.5px}
 }
+@media (max-width:720px){
+  header.nav .nav-inner{gap:10px;padding:0 14px;height:58px}
+  header.nav .brand{font-size:13.5px}
+  header.nav .brand .sub{display:none}
+  header.nav .brand .full{display:none}
+  header.nav .brand .short{display:inline}
+  header.nav .nav-links{gap:0}
+  header.nav .nav-links a{padding:6px 9px;font-size:12.5px}
+  header.nav .nav-cta{margin-left:6px;padding:7px 11px;font-size:12.5px}
+  .hero{padding-top:124px}
+}
 </style>
 </head>
 <body>
 
+<!-- ================= 统一顶栏（与 AI 招聘页 pitch 同款） ================= -->
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand"><i></i>私人财富顾问 AI 工作台</div>
-    <nav class="nav-links">
+    <span class="brand"><span class="dot"></span><span class="nm full">私人财富顾问 AI 工作台</span><span class="nm short">AI 工作台</span><span class="sub">能力展示</span></span>
+    <nav class="nav-links" aria-label="页面导航">
       <a href="#tour">界面巡览</a>
       <a href="#day">使用场景</a>
       <a href="#agents">Agent 矩阵</a>
@@ -186,6 +213,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <a href="#guard">合规护栏</a>
       <a href="#cta">合作</a>
     </nav>
+    <a class="nav-cta" href="#cta">预约演示</a>
   </div>
 </header>
 
@@ -751,6 +779,85 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
     <p>本页为能力展示材料 · 系统：私人财富顾问 AI 工作台 · 页面指标为设计目标与实测表现；效率对比为基于试点口径的推演（以合作中业务基线评测为准）· 不含任何真实客户信息。</p>
   </div>
 </footer>
+
+<!-- ================= 统一顶栏：滚动高亮（IntersectionObserver · 原生 JS · 零外部依赖） ================= -->
+<script>
+(function () {
+  var navLinks = document.querySelector('header.nav .nav-links');
+  if (!navLinks) { return; }
+  var links = Array.prototype.slice.call(navLinks.querySelectorAll('a[href^="#"]'));
+  if (!links.length) { return; }
+
+  var sections = [];
+  links.forEach(function (a) {
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el && sections.indexOf(el) === -1) { sections.push(el); }
+  });
+  if (!sections.length) { return; }
+
+  var active = null;
+  function activate(el) {
+    if (!el) {                                   /* 带状区域内没有章节（如首屏 hero）→ 不高亮，与招聘页一致 */
+      links.forEach(function (a) { a.classList.remove('active'); });
+      active = null;
+      return;
+    }
+    var link = null;
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href') === '#' + el.id) { link = links[i]; break; }
+    }
+    if (!link || link === active) { return; }
+    links.forEach(function (a) { a.classList.remove('active'); });
+    link.classList.add('active');
+    active = link;
+    /* 窄屏：让高亮项在可横向滚动的导航条内保持可见 */
+    if (navLinks.scrollWidth > navLinks.clientWidth + 2) {
+      navLinks.scrollLeft = Math.max(0,
+        link.offsetLeft - navLinks.offsetLeft - (navLinks.clientWidth - link.offsetWidth) / 2);
+    }
+  }
+
+  /* 视口内「锚点落点下方(88px) ~ 上 45%」这条带状区域命中的章节即当前章节；
+     起点取在 scroll-padding-top:84px 落点之下，避免上一节末尾余边误判；按文档顺序取第一个，稳定不抖动 */
+  var visible = [];
+  function atBottom() {
+    return window.scrollY > 4 &&
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  }
+  function sync() {
+    /* 滚到页底时末节常常顶不到落点，按惯例高亮最后一项（与点击末项锚点后的结果一致） */
+    if (atBottom()) { activate(sections[sections.length - 1]); return; }
+    for (var i = 0; i < sections.length; i++) {
+      if (visible.indexOf(sections[i]) !== -1) { activate(sections[i]); return; }
+    }
+    /* 带内没有「导航已登记」的章节：首屏 hero 段（首个章节之前）取消高亮，与招聘页一致；
+       章节登记稀疏时（如财富页只登记 9/15 节）保留上一项，避免滚动中高亮闪断 */
+    var firstTop = sections[0].getBoundingClientRect().top + window.scrollY;
+    if (window.scrollY + 88 < firstTop) { activate(null); }
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var i = visible.indexOf(e.target);
+      if (e.isIntersecting && i === -1) { visible.push(e.target); }
+      else if (!e.isIntersecting && i !== -1) { visible.splice(i, 1); }
+    });
+    sync();
+  }, { rootMargin: '-88px 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(function (s) { io.observe(s); });
+
+  /* 兜底：到达/离开页底时 IO 不一定再触发，补一次布尔判定（不参与常规高亮的计算） */
+  var bottomFlag = null;
+  function onScroll() {
+    var b = atBottom();
+    if (b !== bottomFlag) { bottomFlag = b; sync(); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 </body>
 </html>
