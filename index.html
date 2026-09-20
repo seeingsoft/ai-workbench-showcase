@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Native 端到端智能体系统 · 能力展示</title>
+<meta name="description" content="以真实落地的 Agent 系统为样板：端到端流程、架构、合规护栏与可量化价值。">
+<style>
+:root{
+  --navy:#0d1d35; --navy-deep:#0a1628; --navy-2:#132a4a;
+  --blue:#265dcc; --blue-soft:#8fb2ef; --blue-faint:#e8eefb;
+  --bg:#f3f6fb; --card:#ffffff; --ink:#1c2b45; --ink-soft:#5a6b85; --line:#dbe3f0;
+  --ok:#1f9d63; --warn:#c98a1b; --plan:#7a5bd0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(13,29,53,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{color:#fff;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;gap:9px;font-size:15px}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--blue-soft);display:inline-block}
+.nav-links{display:flex;gap:16px;flex-wrap:wrap}
+.nav-links a{color:#cdd8ec;text-decoration:none;font-size:13px;opacity:.9}
+.nav-links a:hover{color:#fff}
+.hero{background:linear-gradient(150deg,var(--navy-deep) 0%,var(--navy) 55%,#12305c 100%);color:#fff;padding:74px 0 60px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(38,93,204,.45),transparent 70%)}
+.hero .eyebrow{color:var(--blue-soft);font-size:13px;letter-spacing:2px;margin-bottom:14px}
+.hero h1{font-size:40px;line-height:1.25;letter-spacing:.5px;margin-bottom:16px;font-weight:800}
+.hero p.lead{color:#cdd8ec;font-size:16px;max-width:760px}
+.badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;position:relative;z-index:2}
+.badge{background:rgba(255,255,255,.08);border:1px solid rgba(143,178,239,.35);border-radius:12px;padding:13px 18px;min-width:170px}
+.badge b{display:block;font-size:24px;color:#fff}
+.badge span{font-size:12.5px;color:#a9badb}
+section{padding:64px 0}
+section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:34px}
+.sec-head .kicker{color:var(--blue);font-size:13px;font-weight:700;letter-spacing:1.5px;margin-bottom:8px}
+.sec-head h2{font-size:27px;letter-spacing:.4px;color:var(--navy)}
+.sec-head p{color:var(--ink-soft);margin-top:8px;max-width:860px;font-size:14.5px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g6{grid-template-columns:repeat(6,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;box-shadow:0 1px 2px rgba(13,29,53,.04)}
+.card h3{font-size:15.5px;color:var(--navy);margin-bottom:7px}
+.card p{font-size:13.5px;color:var(--ink-soft)}
+.card .tag{display:inline-block;font-size:11.5px;border-radius:999px;padding:2px 10px;margin-top:10px;border:1px solid}
+.t-live{color:var(--ok);border-color:#bfe3d1;background:#eefaf3}
+.t-dev{color:#1c56b8;border-color:#c4d6f5;background:#eef3fd}
+.t-plan{color:var(--plan);border-color:#ded4f4;background:#f5f1fd}
+.diagram{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;overflow-x:auto}
+.diagram svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.flow{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;min-width:900px}
+.flow .step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 10px;position:relative}
+.flow .step b{display:block;font-size:13px;color:var(--navy);margin-bottom:6px}
+.flow .step em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-soft);margin-top:5px}
+.flow .step i{font-style:normal;font-size:11px;color:var(--blue);display:block;margin-top:6px}
+.flow .step::after{content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--blue-soft);font-size:15px}
+.flow .step:last-child::after{display:none}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--ink-soft)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+table.matrix{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
+table.matrix th,table.matrix td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.matrix th{background:#f7f9fd;color:var(--navy);font-size:12.5px;letter-spacing:.5px}
+table.matrix tr:last-child td{border-bottom:none}
+.metrics{display:grid;gap:12px}
+.metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.metric .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px;color:var(--navy);font-weight:600}
+.metric .row span{color:var(--blue);font-weight:700}
+.bar{height:9px;background:var(--blue-faint);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),#5c8ce8)}
+.note{font-size:12px;color:var(--ink-soft);margin-top:14px;border-left:3px solid var(--blue-soft);padding-left:12px}
+.pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;min-width:860px}
+.pipe .p{background:linear-gradient(160deg,#fff,#f7faff);border:1px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center}
+.pipe .p b{display:block;font-size:13px;color:var(--navy);margin-bottom:5px}
+.pipe .p span{font-size:11.5px;color:var(--ink-soft)}
+.guard{display:grid;gap:12px;grid-template-columns:repeat(5,1fr)}
+.guard .g{background:linear-gradient(170deg,#fff,#f4f8ff);border:1px solid var(--line);border-radius:12px;padding:16px 14px}
+.guard .g b{display:block;color:var(--navy);font-size:13.5px;margin-bottom:6px}
+.guard .g span{font-size:12px;color:var(--ink-soft)}
+.cta{background:linear-gradient(150deg,var(--navy) 0%,#12305c 100%);color:#fff;border-radius:18px;padding:40px 36px}
+.cta h2{font-size:24px;margin-bottom:12px}
+.cta p{color:#c7d3e9;font-size:14.5px;max-width:760px}
+.cta .box{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.cta .box span{border:1px dashed rgba(143,178,239,.55);border-radius:10px;padding:10px 16px;font-size:13px;color:#dbe5f7}
+footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
+@media (max-width:960px){
+  .g4,.g3{grid-template-columns:repeat(2,1fr)}
+  .guard{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:29px}
+  .nav-links{display:none}
+}
+@media (max-width:620px){
+  .g4,.g3,.guard{grid-template-columns:1fr}
+  .badge{min-width:140px}
+  section{padding:46px 0}
+  .diagram svg{min-width:860px}
+  .diagram{-webkit-overflow-scrolling:touch}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><i></i>AI Native 智能体系统 · 能力展示</div>
+    <nav class="nav-links">
+      <a href="#overview">系统全景</a>
+      <a href="#flow">端到端流程</a>
+      <a href="#native">设计原则</a>
+      <a href="#arch">技术架构</a>
+      <a href="#matrix">功能全景</a>
+      <a href="#agent">AI 交付力</a>
+      <a href="#value">量化价值</a>
+      <a href="#guard">合规护栏</a>
+      <a href="#cta">合作</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">端到端 · AI NATIVE · 合规内建</p>
+    <h1>用 AI Agent，把「信息」变成「业务动作」</h1>
+    <p class="lead">以真实落地的智能体工作台为样板（高潜客户跟进场景）：从多渠道信息进入、智能归属、画像提炼、人审把关，到跟进与转化闭环——全链路可追溯、可审计、可量化。系统由 AI Agent 流水线开发与验证，交付标准可查。</p>
+    <div class="badges">
+      <div class="badge"><b>8 大模块</b><span>端到端业务流程全覆盖</span></div>
+      <div class="badge"><b>698 项</b><span>自动化测试全绿（真实交付基线）</span></div>
+      <div class="badge"><b>90.9%</b><span>消息自动归属率（端到端实测）</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2 系统全景 -->
+<section id="overview" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">SYSTEM MAP</p>
+      <h2>系统全景：一个工作台，八个能力域</h2>
+      <p>信息从哪来、由谁把关、沉淀成什么、如何驱动下一步动作——每个环节都有明确的 AI 与人的分工。</p>
+    </div>
+    <div class="diagram">
+      <svg viewBox="0 0 1000 560" role="img" aria-label="系统全景思维导图">
+        <defs>
+          <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0d1d35"/><stop offset="1" stop-color="#265dcc"/>
+          </linearGradient>
+        </defs>
+        <circle cx="500" cy="280" r="86" fill="url(#core)"/>
+        <text x="500" y="270" text-anchor="middle" fill="#fff" font-size="17" font-weight="700">智能体工作台</text>
+        <text x="500" y="294" text-anchor="middle" fill="#a9badb" font-size="12">人在回路 · 全链路可追溯</text>
+        <!-- 八分支 -->
+        <g stroke="#c4d6f5" stroke-width="1.6" fill="none">
+          <path d="M500 194 L500 96"/><path d="M560 228 L690 140"/><path d="M586 280 L760 280"/>
+          <path d="M560 332 L690 420"/><path d="M500 366 L500 464"/><path d="M440 332 L310 420"/>
+          <path d="M414 280 L240 280"/><path d="M440 228 L310 140"/>
+        </g>
+        <g font-size="13" fill="#1c2b45" text-anchor="middle">
+          <g><rect x="408" y="52" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="500" y="70" font-weight="700">工作台总览</text><text x="500" y="87" font-size="11" fill="#5a6b85">待办 / 提醒 / 全景看板</text></g>
+          <g><rect x="630" y="96" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="722" y="114" font-weight="700">客户画像 360</text><text x="722" y="131" font-size="11" fill="#5a6b85">要素颗粒化 · 来源可追溯</text></g>
+          <g><rect x="700" y="258" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="792" y="276" font-weight="700">事件 / 场景触发</text><text x="792" y="293" font-size="11" fill="#5a6b85">时机提醒 · 自动匹配</text></g>
+          <g><rect x="630" y="398" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="722" y="416" font-weight="700">个性化话术</text><text x="722" y="433" font-size="11" fill="#5a6b85">生成→合规→人批准</text></g>
+          <g><rect x="408" y="464" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="500" y="482" font-weight="700">跟进与转化漏斗</text><text x="500" y="499" font-size="11" fill="#5a6b85">过程留痕 · 节点可视</text></g>
+          <g><rect x="186" y="398" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="278" y="416" font-weight="700">收件与归属</text><text x="278" y="433" font-size="11" fill="#5a6b85">多通道进件 · 智能认领</text></g>
+          <g><rect x="116" y="258" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="208" y="276" font-weight="700">人审闸门</text><text x="208" y="293" font-size="11" fill="#5a6b85">敏感 100% 人审</text></g>
+          <g><rect x="186" y="96" width="184" height="44" rx="10" fill="#fff" stroke="#dbe3f0"/><text x="278" y="114" font-weight="700">知识沉淀</text><text x="278" y="131" font-size="11" fill="#5a6b85">经验模板 · 复用闭环</text></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 3 端到端流程 -->
+<section id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">END-TO-END FLOW</p>
+      <h2>端到端流程：每一步都知道「谁在做、钱花在哪、风险卡在哪」</h2>
+      <p>八个环节串成一条可运营、可审计的业务流水线——AI 负责规模化处理，人负责关键判断。</p>
+    </div>
+    <div class="diagram">
+      <div class="flow">
+        <div class="step"><b>① 信息进入</b><em>截图 / 口述 / 表格 / 官方通道</em><i>合规：来源留痕</i></div>
+        <div class="step"><b>② 归一清洗</b><em>去噪 · 结构化 · 去重</em><i>AI：批量处理</i></div>
+        <div class="step"><b>③ 智能归属</b><em>别名 + 语义匹配 Top-3</em><i>AI 建议 · 人确认</i></div>
+        <div class="step"><b>④ 画像抽取</b><em>七类要素 · 置信度</em><i>AI：脱敏后出域</i></div>
+        <div class="step"><b>⑤ 人审闸门</b><em>候选确认 / 强制人审</em><i>敏感 100% 人工</i></div>
+        <div class="step"><b>⑥ 跟进决策</b><em>事件触发 · 待办生成</em><i>人：最终判断</i></div>
+        <div class="step"><b>⑦ 话术辅助</b><em>生成→合规检查→批准</em><i>人批准后发送</i></div>
+        <div class="step"><b>⑧ 转化闭环</b><em>漏斗留痕 · 经验沉淀</em><i>经验反哺知识库</i></div>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#265dcc"></i>AI 自动化环节</span>
+        <span><i class="dot" style="background:#1f9d63"></i>人工判断环节（不可省略）</span>
+        <span><i class="dot" style="background:#c98a1b"></i>合规控制点</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 设计原则 -->
+<section id="native" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">AI NATIVE PRINCIPLES</p>
+      <h2>AI Native 设计原则：能力让 AI 发挥，风险让人可控</h2>
+      <p>这六条不是口号，而是写进系统骨架的工程约束。</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>🧭 人在回路</h3><p>敏感信息强制人工审核，话术必须人工批准后才发送；AI 只做候选与草稿，不做最终业务动作。</p></div>
+      <div class="card"><h3>🔗 来源可追溯</h3><p>每条画像要素可回链原始消息与时间；AI 输出的每一条判断都带证据链，可复核、可推翻。</p></div>
+      <div class="card"><h3>🛡 先脱敏后出域</h3><p>客户数据默认不出域；确需调用云端大模型时先脱敏（手机号/身份证/银行卡/邮箱等），再经合规闸放行。</p></div>
+      <div class="card"><h3>📜 全链路审计</h3><p>出域日志只记录统计信息不含原文；模型调用、审核动作、数据变更全部留痕，随时可查。</p></div>
+      <div class="card"><h3>🔌 多模型可插拔</h3><p>模型设置中心统一管理多家大模型（含境内合规白名单管控），可切换、可测试、可回退，不被单一供应商锁定。</p></div>
+      <div class="card"><h3>🧱 降级护栏</h3><p>AI 不可用时系统自动降级（如本地模拟模式），业务不中断；错误不静默，全部进入可观测链路。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 技术架构 -->
+<section id="arch">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">ARCHITECTURE</p>
+      <h2>技术架构：四层解耦，能力可迁移</h2>
+      <p>同一套「接入 → 应用 → 智能 → 数据」骨架，换行业只需替换业务规则与画像模板。</p>
+    </div>
+    <div class="diagram">
+      <svg viewBox="0 0 980 430" role="img" aria-label="技术架构图">
+        <g font-family="inherit">
+          <rect x="40" y="24" width="900" height="78" rx="12" fill="#eef3fd" stroke="#c4d6f5"/>
+          <text x="60" y="50" font-size="14" font-weight="700" fill="#0d1d35">接入层</text>
+          <text x="60" y="76" font-size="12.5" fill="#5a6b85">截图 OCR（本地识别） · 口述转述 · 登记表导入 · 官方通道接入（公众号 / 企微） · 开放 API</text>
+
+          <rect x="40" y="118" width="900" height="78" rx="12" fill="#f4f1fd" stroke="#ded4f4"/>
+          <text x="60" y="144" font-size="14" font-weight="700" fill="#0d1d35">应用层</text>
+          <text x="60" y="170" font-size="12.5" fill="#5a6b85">工作台前端（响应式 · 移动可用） · 业务工作流引擎 · 队列与任务调度 · 人审工作台 · 权限与角色</text>
+
+          <rect x="40" y="212" width="900" height="78" rx="12" fill="#eefaf3" stroke="#bfe3d1"/>
+          <text x="60" y="238" font-size="14" font-weight="700" fill="#0d1d35">智能层</text>
+          <text x="60" y="264" font-size="12.5" fill="#5a6b85">多模型适配网关 · 合规白名单闸（按最终端点判定） · 出域脱敏管道 · Egress 审计 · 积分计费（预扣-结算-幂等）</text>
+
+          <rect x="40" y="306" width="900" height="78" rx="12" fill="#fdf6e9" stroke="#ecd9ae"/>
+          <text x="60" y="332" font-size="14" font-weight="700" fill="#0d1d35">数据层</text>
+          <text x="60" y="358" font-size="12.5" fill="#5a6b85">PostgreSQL · 敏感要素加密存储（AES-256-GCM） · 审计日志 · 本地知识库（Vault） · 备份与恢复</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 6 功能全景矩阵 -->
+<section id="matrix" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">CAPABILITY MATRIX</p>
+      <h2>功能全景：已上线 · 开发中 · 规划蓝图</h2>
+      <p>已交付的按真实工程基线列出；规划部分展示系统演进方向——均遵循同一套 AI Native 原则。</p>
+    </div>
+    <table class="matrix">
+      <thead><tr><th style="width:16%">能力域</th><th style="width:34%">已上线 ✅</th><th style="width:25%">开发中 🔷</th><th style="width:25%">规划蓝图 ◇</th></tr></thead>
+      <tbody>
+        <tr><td><b>收件与归属</b></td><td>多通道收件（截图/口述/表格）· 智能归属 Top-3 推荐 · 待归属队列 · 批量确认</td><td>会话摘要卡（时间线/议题/意向，逐项回链来源）</td><td>公众号 / 企微官方通道自动接入 · 跨渠道身份合并</td></tr>
+        <tr><td><b>客户画像</b></td><td>七类要素颗粒化（投资偏好/风险偏好/私人信息/人生事件/兴趣/驱动/情绪）· 置信度 · 来源追溯 · 加密与打码</td><td>画像完整度评分与缺口提示</td><td>长期记忆库 · 画像随时间演化轨迹</td></tr>
+        <tr><td><b>人审与合规</b></td><td>敏感 100% 强制人审 · 候选确认队列 · 合规白名单闸 · 出域脱敏审计 · 模型设置中心</td><td>合规台账导出增强</td><td>多角色审批链 · 行业合规模板</td></tr>
+        <tr><td><b>跟进与转化</b></td><td>跟进时间线 · 待办生成 · 事件提醒 · 转化漏斗概览</td><td>六阶段转化漏斗（阶段字段）</td><td>多智能体自动跟进建议 · 流失预警</td></tr>
+        <tr><td><b>话术与知识</b></td><td>个性化话术生成+合规审查 · 场景模板 · 知识库（Vault）</td><td>话术批准/转发闭环状态机</td><td>经验自动沉淀为可复用模板 · 团队知识共享</td></tr>
+        <tr><td><b>平台能力</b></td><td>多模型适配（可插拔）· 积分计费引擎 · 监控日志 · 备份恢复 · 响应式界面</td><td>云端知识库增强检索</td><td>多租户 · 行业能力包 · 私有化/云端双模</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 7 AI Agent 交付能力 -->
+<section id="agent">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">AI-DRIVEN DELIVERY</p>
+      <h2>用 AI Agent 造 AI 产品：交付方式本身就是竞争力</h2>
+      <p>本项目由多智能体流水线开发与验证——需求拆解、并行实现、自动审查、自动化测试、真人全流程走查、一键部署，每一步都有可核验的产物。</p>
+    </div>
+    <div class="diagram">
+      <div class="pipe">
+        <div class="p"><b>① 需求拆解</b><span>规格与验收标准冻结</span></div>
+        <div class="p"><b>② 多 Agent 并行</b><span>按模块并行实现</span></div>
+        <div class="p"><b>③ 自动 Code Review</b><span>全仓审查+问题清单</span></div>
+        <div class="p"><b>④ 自动化测试</b><span>698 项全绿才放行</span></div>
+        <div class="p"><b>⑤ 真人走查</b><span>浏览器全流程操作验证</span></div>
+        <div class="p"><b>⑥ 一键部署</b><span>构建/发布/回滚</span></div>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#265dcc"></i>多 Agent 并行：同一迭代内多个智能体按文件域隔离协作</span>
+        <span><i class="dot" style="background:#1f9d63"></i>质量闸门：编译/测试/渲染任一项不过不得合入</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 量化价值 -->
+<section id="value" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">MEASURABLE VALUE</p>
+      <h2>可量化价值：每项能力都有口径与验收线</h2>
+      <p>以下为试点验收口径（设计目标值，将以真实业务基线校准），以及当前工程已实测的硬指标。</p>
+    </div>
+    <div class="grid g3" style="grid-template-columns:1.4fr 1fr">
+      <div class="metrics">
+        <div class="metric"><div class="row">单客户跟进准备时间（对比人工翻记录）<span>↓ ≥ 50%</span></div><div class="bar"><i style="width:72%"></i></div></div>
+        <div class="metric"><div class="row">每周信息整理耗时<span>≤ 1 小时/周</span></div><div class="bar"><i style="width:64%"></i></div></div>
+        <div class="metric"><div class="row">画像覆盖达标客户（5 项关键字段）<span>≥ 8/10</span></div><div class="bar"><i style="width:80%"></i></div></div>
+        <div class="metric"><div class="row">画像抽取命中正确率<span>≥ 90%</span></div><div class="bar"><i style="width:90%"></i></div></div>
+        <div class="metric"><div class="row">来源可追溯 / 敏感要素人审<span>100%</span></div><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <div class="grid" style="align-content:start">
+        <div class="card"><h3>📐 698 项自动化测试</h3><p>覆盖单元/集成/数据/流程/安全各层，全绿方可交付。</p></div>
+        <div class="card"><h3>🎯 90.9% 自动归属率</h3><p>端到端回放实测（内控阈值 ≥85%）。</p></div>
+        <div class="card"><h3>🖥 17 路由 0 白屏</h3><p>无头浏览器逐页真实渲染验证。</p></div>
+      </div>
+    </div>
+    <p class="note">口径说明：上方进度条为试点验收设计目标（E1/E2/P1/P2 口径见交付文档），下方徽章为当前工程实测数据；所有指标均可在合作中按您的业务基线复测。</p>
+  </div>
+</section>
+
+<!-- 9 合规护栏 -->
+<section id="guard">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">COMPLIANCE GUARDRAILS</p>
+      <h2>合规护栏：把红线做成系统能力，而不是文档承诺</h2>
+      <p>护栏以代码与流程强制落地，任何人都绕不过去。</p>
+    </div>
+    <div class="guard">
+      <div class="g"><b>🛡 数据不出域默认</b><span>客户数据默认留在自有系统；出域必须过闸。</span></div>
+      <div class="g"><b>🧼 脱敏后出域</b><span>调用云端模型前自动抹除多类敏感标识。</span></div>
+      <div class="g"><b>🔐 加密与打码</b><span>敏感要素加密存储，界面默认打码。</span></div>
+      <div class="g"><b>🧾 出域不记原文</b><span>审计日志仅统计信息，零原文留存。</span></div>
+      <div class="g"><b>🚫 抓取零容忍</b><span>不实现任何非官方数据抓取通道。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 迁移与 CTA -->
+<section id="cta" class="alt">
+  <div class="wrap">
+    <div class="cta">
+      <h2>这套能力，可以迁移到您的业务场景</h2>
+      <p>「多渠道信息进件 → AI 结构化 → 人审把关 → 业务动作 → 数据闭环」的骨架与行业无关：金融客户经营、教育招生跟进、医疗服务随访、制造业渠道管理……替换业务规则与画像模板即可复用。</p>
+      <div class="box">
+        <span>✔ 端到端交付：从需求到上线到验收</span>
+        <span>✔ 可验证工程标准：测试与走查全留痕</span>
+        <span>✔ 合规内建：红线以代码强制</span>
+        <span>✔ AI Agent 流水线开发：同等规模更快迭代</span>
+      </div>
+      <p style="margin-top:22px">合作与演示预约：[联系方式占位]</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>本页为能力展示材料 · 样板系统：高潜客户跟进智能体工作台 · 页面数据为设计验收口径与工程实测指标 · 不含任何真实客户信息。</p>
+  </div>
+</footer>
+
+</body>
+</html>
