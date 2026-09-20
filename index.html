@@ -89,21 +89,44 @@ table.matrix tr:last-child td{border-bottom:none}
   table.matrix td{border-bottom:none;padding:6px 14px}
   table.matrix td:first-child{font-weight:800;color:var(--navy);background:#f7f9fd;font-size:13.5px}
 }
-.metrics{display:grid;gap:12px}
-.metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.metric .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px;color:var(--navy);font-weight:600}
-.metric .row span{color:var(--blue);font-weight:700}
-.bar{height:9px;background:var(--blue-faint);border-radius:99px;overflow:hidden}
-.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),#5c8ce8)}
 .note{font-size:12px;color:var(--ink-soft);margin-top:14px;border-left:3px solid var(--blue-soft);padding-left:12px}
 .pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;min-width:860px}
 .pipe .p{background:linear-gradient(160deg,#fff,#f7faff);border:1px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center}
 .pipe .p b{display:block;font-size:13px;color:var(--navy);margin-bottom:5px}
 .pipe .p span{font-size:11.5px;color:var(--ink-soft)}
-.guard{display:grid;gap:12px;grid-template-columns:repeat(5,1fr)}
-.guard .g{background:linear-gradient(170deg,#fff,#f4f8ff);border:1px solid var(--line);border-radius:12px;padding:16px 14px}
-.guard .g b{display:block;color:var(--navy);font-size:13.5px;margin-bottom:6px}
-.guard .g span{font-size:12px;color:var(--ink-soft)}
+/* ---------- P1：金色人工节点 / 能力口径验收线 / 护栏四段式 / 来源清单 ---------- */
+.day .row.gold{border-color:#fbbf24;border-left:6px solid #fbbf24;background:#fffbeb}
+.day .row.gold .t{color:#7c5a10}
+.day .row.gold .new-w{color:#3f3106}
+.day .row.gold .new-w b{color:#7c5a10}
+.gold-tag{display:inline-block;background:#fbbf24;color:#3d2c00;font-weight:800;font-size:11.5px;border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px}
+.crit{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:13.5px}
+.crit th,.crit td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.crit th{background:#f7f9fd;color:var(--navy);font-size:13px;font-weight:800}
+.crit th:first-child,.crit td:first-child{width:22%;font-weight:700;color:var(--ink)}
+.crit td:last-child{color:#12543a}
+.crit tr:last-child td{border-bottom:none}
+.hg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hg .h-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;border-top:4px solid var(--blue)}
+.hg .h-card h3{font-size:15px;color:var(--navy);margin-bottom:10px}
+.hg .h-card ul{list-style:none}
+.hg .h-card li{font-size:13.5px;color:var(--ink-soft);padding:6px 0 6px 18px;position:relative;line-height:1.7}
+.hg .h-card li:before{content:"";position:absolute;left:0;top:13px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.fn{font-size:11px;color:var(--blue);font-weight:800;vertical-align:super;text-decoration:none;padding:0 1px}
+.src-list{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.src-list h3{font-size:14.5px;color:var(--navy);margin-bottom:10px}
+.src-list ol{margin:0;padding-left:20px}
+.src-list li{font-size:12.5px;color:var(--ink-soft);line-height:1.8;margin-bottom:2px}
+@media (max-width:620px){.hg{grid-template-columns:1fr}
+  .crit thead{display:none}
+  .crit,.crit tbody,.crit tr,.crit td,.crit td:first-child{display:block;width:auto;max-width:none}
+  .crit tr{border-bottom:1px solid var(--line);padding:8px 0}
+  .crit tr:last-child{border-bottom:none}
+  .crit td{border-bottom:none;padding:6px 14px}
+  .crit td:first-child{font-weight:800;color:var(--navy);background:#f7f9fd;font-size:13.5px}
+  .crit td:nth-child(2)::before{content:"口径 · ";font-weight:800}
+  .crit td:nth-child(3)::before{content:"验收线 · ";font-weight:800}
+}
 /* ---------- P0：统一收尾（服务能力 / 联系 / 渐变 CTA） ---------- */
 .svc{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .svc li{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:16px 18px}
@@ -195,8 +218,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
 @media (max-width:620px){.c2,.c3,.c4{grid-template-columns:1fr}.tour{padding:16px 12px 4px}}
 @media (max-width:960px){
   .g4,.g3{grid-template-columns:repeat(2,1fr)}
-  .guard{grid-template-columns:repeat(2,1fr)}
-  .hero h1{font-size:29px}
+    .hero h1{font-size:29px}
   .day .row{grid-template-columns:64px 1fr}
   .day .old-w,.day .new-w{grid-column:span 2}
   .agent-grid{grid-template-columns:repeat(2,1fr)}
@@ -509,26 +531,30 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <h2>使用场景：私人财富顾问的一天，是这样过的</h2>
       <p>同样的一天、同样的客户——左边是过去（传统方式 + 普通 CRM），右边是用了私人财富顾问 AI 工作台之后。</p>
     </div>
+    <p class="sub" style="margin:-18px 0 18px">逐时刻对照：左边是过去（传统方式 + 普通 CRM），右边是现在。金色那一行是全天唯一需要人的动作。</p>
     <div class="day">
+      <div class="row"><div class="t">07:40</div><div class="scene">开工前想知道"今天该干什么"</div>
+        <div class="old-w"><b>传统方式</b>翻日历、翻备忘录、凭记忆排优先级，先花 20 分钟想</div>
+        <div class="new-w"><b>AI 工作台</b>自动按客户优先级生成今日待办与提醒，您扫一眼即可——无需任何操作</div></div>
       <div class="row"><div class="t">08:45</div><div class="scene">昨晚客户微信里聊到"想给孩子存留学钱"</div>
-        <div class="old-w"><b>传统方式</b>先截图存相册，等有空再翻出来手工记到 CRM 表格里，约 15 分钟/条</div>
-        <div class="new-w"><b>AI 工作台</b>截图丢进系统 → 自动识别是谁、提炼成画像要点 → 您点一下"确认"，约 1 分钟</div></div>
+        <div class="old-w"><b>传统方式</b>先截图存相册，等有空再翻出来手工记到 CRM 表格里，约 15 分钟/条<sup class="fn">[1]</sup></div>
+        <div class="new-w"><b>AI 工作台</b>截图丢进系统 → 自动识别是谁、提炼画像要点、归档更新画像，全自动约 1 分钟</div></div>
       <div class="row"><div class="t">09:30</div><div class="scene">上午要见一位重要客户，得先"备课"</div>
         <div class="old-w"><b>传统方式</b>翻聊天记录、翻笔记、拼凑记忆，约 30 分钟</div>
-        <div class="new-w"><b>AI 工作台</b>打开客户画像 360——投资偏好、家庭情况、最近动态、来源出处一屏看完，3 分钟</div></div>
+        <div class="new-w"><b>AI 工作台</b>自动汇总画像 360（偏好/家庭/最近动态/逐条出处）并生成沟通要点，3 分钟看完</div></div>
       <div class="row"><div class="t">14:00</div><div class="scene">有新消息进来，不知道该归到哪位客户</div>
         <div class="old-w"><b>传统方式</b>靠记忆判断，容易归错、漏记</div>
-        <div class="new-w"><b>AI 工作台</b>系统给出"最可能是谁"的建议与依据，您一键确认或改选，5 秒一条</div></div>
-      <div class="row"><div class="t">16:30</div><div class="scene">系统提醒：某客户的产品下周到期</div>
-        <div class="old-w"><b>传统方式</b>靠日历和记性，常常错过最佳时机</div>
-        <div class="new-w"><b>AI 工作台</b>自动提醒 + 按该客户画像生成沟通建议 → 您改两句即可使用，人批准才发出</div></div>
+        <div class="new-w"><b>AI 工作台</b>给出"最可能是谁"的建议与依据并自动归属，命中不确定时才提示您，默认零介入</div></div>
+      <div class="row gold"><div class="t">16:30</div><div class="scene">系统提醒：某客户的产品下周到期，要发出沟通<span class="gold-tag">全天唯一需要人的动作</span></div>
+        <div class="old-w"><b>传统方式</b>靠日历和记性，常常错过最佳时机；话术还得自己从头写</div>
+        <div class="new-w"><b>AI 工作台</b>自动提醒 + 按画像起草话术 + 合规检查，随后由您批准发出。系统在此停下等人，其余环节全自动——AI 不能替您签字</div></div>
       <div class="row"><div class="t">18:00</div><div class="scene">收工前补今天 5 条跟进记录</div>
         <div class="old-w"><b>传统方式</b>逐条回忆、逐字敲，约 15 分钟/条、还容易漏</div>
-        <div class="new-w"><b>AI 工作台</b>口述两句 → AI 整理成规范记录 → 确认即存；有"下一步"的自动进待办，2 分钟/条</div></div>
+        <div class="new-w"><b>AI 工作台</b>口述两句 → AI 整理成规范记录并自动进待办，2 分钟/条</div></div>
     </div>
     <div class="totals">
-      <div class="t-card t-old"><span>传统方式 + 普通 CRM：一天的重复杂务</span><b>≈ 2 小时以上</b><span style="font-size:12.5px">还伴随漏记、归错、错过时机</span></div>
-      <div class="t-card t-new"><span>私人财富顾问 AI 工作台：同样工作</span><b>≈ 15 分钟</b><span style="font-size:12.5px">记录更全、画像更细、时机不漏</span></div>
+      <div class="t-card t-old"><span>传统方式 + 普通 CRM：一天的重复杂务</span><b>≈ 2 小时以上<sup class="fn">[2]</sup></b><span style="font-size:12.5px">还伴随漏记、归错、错过时机</span></div>
+      <div class="t-card t-new"><span>私人财富顾问 AI 工作台：同样工作</span><b>≈ 15 分钟<sup class="fn">[3]</sup></b><span style="font-size:12.5px">记录更全、画像更细、时机不漏</span></div>
     </div>
     <p class="note">省下的不是"几分钟"，而是整个人的注意力——把时间还给高净值客户的深度经营。</p>
   </div>
@@ -745,24 +771,27 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">MEASURABLE VALUE</p>
-      <h2>可量化价值：每项能力都有口径与验收线</h2>
-      <p>以下为试点验收口径（设计目标值，将以真实业务基线校准），以及当前工程已实测的硬指标。</p>
+      <h2>每项能力都有口径与验收线：您可以代入自己的数字</h2>
+      <p>不谈"提升几倍"——只写清楚"怎么算"和"达到什么算过关"，您用自己手里的客户数、人均跟进频次就能核算。</p>
     </div>
-    <div class="grid g3" style="grid-template-columns:1.4fr 1fr">
-      <div class="metrics">
-        <div class="metric"><div class="row">单客户跟进准备时间（对比人工翻记录）<span>↓ ≥ 50%</span></div><div class="bar"><i style="width:72%"></i></div></div>
-        <div class="metric"><div class="row">每周信息整理耗时<span>≤ 1 小时/周</span></div><div class="bar"><i style="width:64%"></i></div></div>
-        <div class="metric"><div class="row">画像覆盖达标客户（5 项关键字段）<span>≥ 8/10</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="metric"><div class="row">画像抽取命中正确率<span>≥ 90%</span></div><div class="bar"><i style="width:90%"></i></div></div>
-        <div class="metric"><div class="row">来源可追溯 / 敏感信息人工把关<span>100%</span></div><div class="bar"><i style="width:100%"></i></div></div>
-      </div>
-      <div class="grid" style="align-content:start">
-        <div class="card"><h3>📐 698 项自动化测试</h3><p>覆盖单元/集成/数据/流程/安全各层，全绿方可交付。</p></div>
-        <div class="card"><h3>🎯 90.9% 自动归属率</h3><p>端到端回放实测（内控阈值 ≥85%）。</p></div>
-        <div class="card"><h3>🖥 17 路由 0 白屏</h3><p>无头浏览器逐页真实渲染验证。</p></div>
-      </div>
+    <table class="crit">
+      <thead><tr><th>能力</th><th>口径（怎么算）</th><th>验收线（达到什么算过关）</th></tr></thead>
+      <tbody>
+        <tr><td>信息进件自动化</td><td>从信息进门到成为可用画像要点，系统独立完成的动作数 ÷ 全流程动作总数</td><td>人只需在信息存疑时介入；每条画像要点可回溯到原始进件</td></tr>
+        <tr><td>结论可追溯</td><td>可回溯到原始进件的画像与建议数 ÷ 全部画像与建议数</td><td>100%——查不到出处的内容不得进入档案，也不得用于对外沟通</td></tr>
+        <tr><td>人审把关</td><td>对外发出的内容中，经人批准后才发出的比例</td><td>100%——AI 只起草与检查，签字权永远在人</td></tr>
+        <tr><td>权限与审计</td><td>越权访问被拦截次数 ÷ 越权尝试次数；关键动作留痕条数</td><td>100% 拦截；关键动作 100% 留痕可查</td></tr>
+        <tr><td>画像覆盖度</td><td>按 5 项关键字段（风险偏好、家庭结构、人生事件、投资偏好、决策习惯）齐全的客户数 ÷ 在管客户数</td><td>≥ 8/10 的在管客户达到 5 项齐全</td></tr>
+        <tr><td>画像抽取正确率</td><td>端到端回放中，自动归属/抽取结果与人工判定一致条数 ÷ 抽检条数</td><td>≥ 90%（内控阈值 ≥85%，低于阈值转人工）<sup class="fn">[4]</sup></td></tr>
+        <tr><td>每天的人工动作数</td><td>一天中必须由顾问完成的动作次数（不含自主阅读与判断）</td><td>≤ 1 次：对外沟通的批准，其余环节全自动</td></tr>
+      </tbody>
+    </table>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><h3>📐 698 项自动化测试<sup class="fn">[5]</sup></h3><p>覆盖单元/集成/数据/流程/安全各层，全绿方可交付。</p></div>
+      <div class="card"><h3>🎯 90.9% 自动归属率<sup class="fn">[4]</sup></h3><p>端到端回放实测（内控阈值 ≥85%）。</p></div>
+      <div class="card"><h3>🖥 17 路由 0 白屏<sup class="fn">[6]</sup></h3><p>无头浏览器逐页真实渲染验证。</p></div>
     </div>
-    <p class="note">口径说明：上方进度条为试点验收的设计目标；下方徽章为系统当前的实测表现。所有指标均可在合作中按您的业务基线复测。</p>
+    <p class="note">口径说明：上表为验收口径与验收线（设计目标值，将在合作中按您的业务基线校准）；下方三张卡为当前工程已实测的硬指标。全部数字的口径与取数时间见页尾「数字口径与来源清单」。</p>
   </div>
 </section>
 
@@ -771,15 +800,49 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker">COMPLIANCE GUARDRAILS</p>
-      <h2>合规护栏：把红线做成系统能力，而不是文档承诺</h2>
-      <p>护栏以代码与流程强制落地，任何人都绕不过去。</p>
+      <h2>合规与安全护栏：把红线做成系统能力，而不是文档承诺</h2>
+      <p>护栏以代码与流程强制落地：数据边界说清什么不出系统，权限与审计说清谁做了什么可查，AI 红线列出永不交给 AI 的判断，人工确认点清单列出每天真正需要人出现的那几处。</p>
     </div>
-    <div class="guard">
-      <div class="g"><b>🛡 数据默认不出门</b><span>客户资料默认留在您自己的系统里，需要外部处理时报批放行。</span></div>
-      <div class="g"><b>🧼 敏感信息先打码</b><span>手机号、证件号等自动抹去后，才交给 AI 处理。</span></div>
-      <div class="g"><b>🔐 隐私加密存储</b><span>敏感内容加密保存，界面默认打码显示。</span></div>
-      <div class="g"><b>🧾 AI 处理只留统计</b><span>处理记录只保留必要信息，不留客户原文。</span></div>
-      <div class="g"><b>🚫 不做任何违规获取</b><span>只走用户主动提交与官方合规通道，零爬取零破解。</span></div>
+    <div class="hg">
+      <div class="h-card">
+        <h3>一、数据边界：什么不出系统</h3>
+        <ul>
+          <li>客户资料与画像库默认留在您自己的系统里，需要外部处理时报批放行。</li>
+          <li>手机号、证件号、银行卡等敏感信息先自动打码，才交给 AI 处理。</li>
+          <li>敏感内容加密保存，界面默认脱敏显示。</li>
+          <li>AI 处理记录只保留必要统计，不留客户原文；真实数据不进入开发与演示环境。</li>
+          <li>不做事后解释的"违规获取"：只走您主动提交与官方合规通道，零爬取零破解。</li>
+        </ul>
+      </div>
+      <div class="h-card">
+        <h3>二、权限与审计：谁做了什么可查</h3>
+        <ul>
+          <li>按角色分配最小可见范围；AI 不能给自己或他人扩权。</li>
+          <li>关键动作（进件、归属、画像更新、话术发出、导出）逐条留痕，可回溯到操作人与时间。</li>
+          <li>对外沟通的批准记录独立留存，谁批的、批的是哪一版内容，事后可查。</li>
+          <li>生成类内容带来源标注，来源缺失即不允许进入对外材料。</li>
+        </ul>
+      </div>
+      <div class="h-card">
+        <h3>三、AI 的红线：这些判定永不进实验</h3>
+        <ul>
+          <li>对外发出的每一条内容：AI 只起草与自查，签字与发出权永远在人。</li>
+          <li>风险等级、适配结论、是否成交这类判断：AI 不得自行下结论，只提供依据与建议。</li>
+          <li>合规判定：命中规则即停下转人工，AI 不得自行放行。</li>
+          <li>查不到出处的内容：不得写入档案，也不得用于对外沟通。</li>
+          <li>权限、策略或数据出现异常时自动停下转人工，绝不"带着疑问硬跑"。</li>
+        </ul>
+      </div>
+      <div class="h-card">
+        <h3>四、人工确认点清单：每天真正需要人的几处</h3>
+        <ul>
+          <li>对外沟通的批准——每次发出前一次，是全天唯一的固定人工动作。</li>
+          <li>信息归属存疑时的确认——触发式，默认零介入。</li>
+          <li>画像要点有争议时的裁定——触发式。</li>
+          <li>导出与外部处理的报批——发生时一次。</li>
+          <li>四类消息之外，AI 的中间步骤不弹窗、不打扰。</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -798,6 +861,19 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
       <li><b>培训</b><span>为顾问与运营各出一套上手材料，含真实客户场景演练，新人按同一套流程接手。</span></li>
       <li><b>响应口径</b><span>工作时间内的问题当日响应；影响客户跟进的问题优先处理并同步处理进展。</span></li>
     </ul>
+
+    <div class="src-list" id="sources" style="margin-top:40px">
+      <h3>数字口径与来源清单</h3>
+      <ol>
+        <li><b>[1] 手工录入约 15 分钟/条 · 整理约 30 分钟 · 记录约 15 分钟/条</b>——口径：传统方式（截图存相册→手工录入 CRM→逐条补记录）下每个动作的耗时；取数时间：2026-09，业务访谈口径，非逐条秒表实测。</li>
+        <li><b>[2] 传统方式一天重复性事务 ≈ 2 小时以上</b>——口径：把进件录入、画像整理、记录补录、提醒排期四类事务按上述单条耗时累加；取数时间：2026-09。</li>
+        <li><b>[3] 同样工作 ≈ 15 分钟 / 全天人工动作 ≤ 1 次</b>——口径：AI 工作台流程中"必须由人完成"的动作次数与耗时（对外沟通批准一处）；取数时间：2026-09，流程实测。</li>
+        <li><b>[4] 自动归属率 90.9%（内控阈值 ≥85%）</b>——口径：端到端回放中，系统给出的归属建议与人工判定一致的条数 ÷ 抽检条数；取数时间：2026-09，随版本迭代复测。</li>
+        <li><b>[5] 698 项自动化测试</b>——口径：交付前自动执行的单元/集成/数据/流程/安全检查条目数，全绿方可交付；取数时间：2026-09，随版本迭代只增不减。</li>
+        <li><b>[6] 17 条路由 0 白屏</b>——口径：无头浏览器对全部页面路由逐页真实渲染，出现白屏或渲染错误的路由数；取数时间：2026-09。</li>
+      </ol>
+      <p style="font-size:12px;color:var(--ink-soft);margin-top:12px">界面巡览中的界面截图与数值为示意数据，用于说明交互方式，不代表任何真实客户信息；未标注脚注的数字（时间点、客户数量等）为场景举例，不是指标承诺。</p>
+    </div>
 
     <div class="sec-head" style="margin:40px 0 22px">
       <h2>联系：预约演示与合作</h2>
