@@ -255,6 +255,17 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
   header.nav .nav-cta{margin-left:6px;padding:7px 11px;font-size:12.5px}
   .hero{padding-top:124px}
 }
+
+/* ===== 端到端业务流程泳道时序图：新增作用域类，不改动页面既有任何规则 ===== */
+.swim-lead-line{margin:26px 0 14px;color:var(--ink-soft);font-size:14px;max-width:900px}
+.swim-fig svg{min-width:1010px}
+.sw-cardx{font-size:13.5px;font-weight:700;fill:var(--navy);dominant-baseline:middle}
+.sw-stage{font-size:13px;font-weight:700}
+.sw-lead{font-size:11px;fill:var(--ink-soft)}
+.sw-colh{font-size:12.5px;font-weight:700;fill:var(--navy)}
+.sw-act{font-size:11.5px;fill:var(--ink-soft)}
+.sw-step{font-size:11.5px;font-weight:700;text-anchor:middle;dominant-baseline:middle}
+.sw-goldnote{font-size:12.5px;font-weight:700;fill:#8a5a12}
 </style>
 </head>
 <body>
@@ -265,6 +276,7 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
     <span class="brand"><span class="dot"></span><span class="nm full">私人财富顾问 AI 工作台</span><span class="nm short">AI 工作台</span><span class="sub">能力展示</span></span>
     <nav class="nav-links" aria-label="页面导航">
       <a href="#tour">界面巡览</a>
+      <a href="#swim">业务流程</a>
       <a href="#day">使用场景</a>
       <a href="#agents">Agent 矩阵</a>
       <a href="#evolve">越用越聪明</a>
@@ -593,6 +605,156 @@ footer{padding:34px 0 44px;color:var(--ink-soft);font-size:12.5px}
         <span><i class="dot" style="background:#c98a1b"></i>合规控制点</span>
       </div>
     </div>
+    <p class="swim-lead-line">四条泳道、四个阶段、16 个动作串成一条完整闭环。实线是执行与交付，虚线是回执与资料回流；<b>金色那一段是全程唯一需要您亲手确认的节点</b>，其余都由系统自动跑完。</p>
+    <figure class="p2-fig swim-fig" id="swim">
+      <svg viewBox="0 0 1010 1070" role="img" aria-label="端到端业务流程泳道时序图">
+      <defs>
+      <linearGradient id="sw-accent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#265dcc"/><stop offset="1" stop-color="#7a5bd0"/></linearGradient>
+      <marker id="sw-cy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#265dcc"/></marker>
+      <marker id="sw-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5a6b85"/></marker>
+      <marker id="sw-go" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a86f00"/></marker>
+      </defs>
+      <rect x="0" y="0" width="1010" height="1070" rx="16" fill="#f8fafd" stroke="#dbe3f0" stroke-width="1"/>
+      <line x1="160" y1="84" x2="160" y2="1002" stroke="rgba(90,107,133,.35)" stroke-width="1" stroke-dasharray="5 5"/>
+      <line x1="382" y1="84" x2="382" y2="1002" stroke="rgba(90,107,133,.35)" stroke-width="1" stroke-dasharray="5 5"/>
+      <line x1="618" y1="84" x2="618" y2="1002" stroke="rgba(90,107,133,.35)" stroke-width="1" stroke-dasharray="5 5"/>
+      <line x1="858" y1="84" x2="858" y2="1002" stroke="rgba(90,107,133,.35)" stroke-width="1" stroke-dasharray="5 5"/>
+      <g><rect x="56" y="34" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="76" cy="59.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="160" y="59.0" text-anchor="middle">客户</text></g>
+      <g><rect x="278" y="34" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="298" cy="59.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="382" y="59.0" text-anchor="middle">顾问</text></g>
+      <g><rect x="514" y="34" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="534" cy="59.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="618" y="59.0" text-anchor="middle">AI 工作台</text></g>
+      <g><rect x="754" y="34" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="774" cy="59.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="858" y="59.0" text-anchor="middle">平台系统</text></g>
+      <clipPath id="swb0"><rect x="46" y="102" width="918" height="206" rx="12"/></clipPath>
+      <rect x="46" y="102" width="918" height="206" rx="12" fill="#e8eefb" stroke="rgba(38,93,204,.45)"/>
+      <g clip-path="url(#swb0)">
+      <text class="sw-stage" x="62" y="122" fill="#265dcc">第一步 · 信息进门</text>
+      <text class="sw-lead" x="62" y="139">客户的每一次沟通，自动变成可用素材——不手工转录、不事后补录。</text>
+      <line x1="62" y1="148" x2="948" y2="148" stroke="rgba(38,93,204,.35)"/>
+      </g>
+      <text class="sw-colh" x="160" y="190" text-anchor="middle" data-box="47 172 273 308">提交沟通素材</text>
+      <text class="sw-colh" x="382" y="190" text-anchor="middle" data-box="269 172 495 308">授权与转交</text>
+      <text class="sw-colh" x="618" y="190" text-anchor="middle" data-box="505 172 731 308">采集与归一</text>
+      <text class="sw-colh" x="858" y="190" text-anchor="middle" data-box="745 172 971 308">接口接收与校验</text>
+      <text class="sw-act" x="160" y="209" text-anchor="middle" data-box="47 172 273 308">微信聊天记录截图、口述、表格资料</text>
+      <text class="sw-act" x="382" y="209" text-anchor="middle" data-box="269 172 495 308">确认素材可用并授权系统处理</text>
+      <text class="sw-act" x="618" y="209" text-anchor="middle" data-box="505 172 731 308">多通道进件、去重清洗，</text>
+      <text class="sw-act" x="618" y="225" text-anchor="middle" data-box="505 172 731 308">统一成规范素材</text>
+      <text class="sw-act" x="858" y="209" text-anchor="middle" data-box="745 172 971 308">通道对接、完整性校验，</text>
+      <text class="sw-act" x="858" y="225" text-anchor="middle" data-box="745 172 971 308">失败自动重试</text>
+      <circle cx="160" cy="160" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="160" y="160" fill="#ffffff">1</text>
+      <circle cx="382" cy="160" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="382" y="160" fill="#ffffff">2</text>
+      <circle cx="618" cy="160" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="618" y="160" fill="#ffffff">3</text>
+      <circle cx="858" cy="160" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="858" y="160" fill="#ffffff">4</text>
+      <path d="M 160 246 L 618 246" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 618 258 L 858 258" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 858 261 L 618 261" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <path d="M 618 273 L 160 273" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <clipPath id="swb1"><rect x="46" y="328" width="918" height="206" rx="12"/></clipPath>
+      <rect x="46" y="328" width="918" height="206" rx="12" fill="#f2eefc" stroke="rgba(122,91,208,.45)"/>
+      <g clip-path="url(#swb1)">
+      <text class="sw-stage" x="62" y="348" fill="#5f3fb0">第二步 · 需求与风险梳理</text>
+      <text class="sw-lead" x="62" y="365">AI 提炼要点、给出候选，人只做确认与纠偏。</text>
+      <line x1="62" y1="374" x2="948" y2="374" stroke="rgba(122,91,208,.35)"/>
+      </g>
+      <text class="sw-colh" x="160" y="416" text-anchor="middle" data-box="47 398 273 534">说清诉求</text>
+      <text class="sw-colh" x="382" y="416" text-anchor="middle" data-box="269 398 495 534">确认与纠偏</text>
+      <text class="sw-colh" x="618" y="416" text-anchor="middle" data-box="505 398 731 534">提炼与评估</text>
+      <text class="sw-colh" x="858" y="416" text-anchor="middle" data-box="745 398 971 534">风险数据支撑</text>
+      <text class="sw-act" x="160" y="435" text-anchor="middle" data-box="47 398 273 534">收益预期、资金用途、</text>
+      <text class="sw-act" x="160" y="451" text-anchor="middle" data-box="47 398 273 534">时间安排与顾虑</text>
+      <text class="sw-act" x="382" y="435" text-anchor="middle" data-box="269 398 495 534">逐条确认画像要点，</text>
+      <text class="sw-act" x="382" y="451" text-anchor="middle" data-box="269 398 495 534">有偏差当场纠正</text>
+      <text class="sw-act" x="618" y="435" text-anchor="middle" data-box="505 398 731 534">画像要点提炼、风险偏好识别，</text>
+      <text class="sw-act" x="618" y="451" text-anchor="middle" data-box="505 398 731 534">敏感信息先打码再处理</text>
+      <text class="sw-act" x="858" y="435" text-anchor="middle" data-box="745 398 971 534">风险等级、产品与行情数据</text>
+      <circle cx="160" cy="386" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="160" y="386" fill="#ffffff">5</text>
+      <circle cx="382" cy="386" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="382" y="386" fill="#ffffff">6</text>
+      <circle cx="618" cy="386" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="618" y="386" fill="#ffffff">7</text>
+      <circle cx="858" cy="386" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="858" y="386" fill="#ffffff">8</text>
+      <path d="M 618 472 L 382 472" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 618 484 L 858 484" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 382 487 L 618 487" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <path d="M 858 499 L 618 499" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <clipPath id="swb2"><rect x="46" y="554" width="918" height="206" rx="12"/></clipPath>
+      <rect x="46" y="554" width="918" height="206" rx="12" fill="#fff6e0" stroke="rgba(201,138,27,.6)"/>
+      <g clip-path="url(#swb2)">
+      <text class="sw-stage" x="62" y="574" fill="#8a5a12">第三步 · 方案生成</text>
+      <text class="sw-lead" x="62" y="591">系统按画像与风险等级自动产出候选方案与话术草稿，人工只保留最后一票。</text>
+      <line x1="62" y1="600" x2="948" y2="600" stroke="rgba(201,138,27,.35)"/>
+      </g>
+      <text class="sw-colh" x="160" y="642" text-anchor="middle" data-box="47 624 273 760">确认方案与话术</text>
+      <text class="sw-colh" x="382" y="642" text-anchor="middle" data-box="269 624 495 760">把关后发出</text>
+      <text class="sw-colh" x="618" y="642" text-anchor="middle" data-box="505 624 731 760">生成候选方案</text>
+      <text class="sw-colh" x="858" y="642" text-anchor="middle" data-box="745 624 971 760">产品与合规校验</text>
+      <text class="sw-act" x="160" y="661" text-anchor="middle" data-box="47 624 273 760">确认最终方案与对外说法</text>
+      <text class="sw-act" x="382" y="661" text-anchor="middle" data-box="269 624 495 760">逐条核对合规口径，</text>
+      <text class="sw-act" x="382" y="677" text-anchor="middle" data-box="269 624 495 760">批准后才发出</text>
+      <text class="sw-act" x="618" y="661" text-anchor="middle" data-box="505 624 731 760">按画像与风险等级生成配置候选，</text>
+      <text class="sw-act" x="618" y="677" text-anchor="middle" data-box="505 624 731 760">起草沟通话术</text>
+      <text class="sw-act" x="858" y="661" text-anchor="middle" data-box="745 624 971 760">产品数据核对、合规规则校验</text>
+      <circle cx="160" cy="612" r="8.5" fill="#c98a1b"/>
+      <text class="sw-step" x="160" y="612" fill="#1c2b45">9</text>
+      <circle cx="382" cy="612" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="382" y="612" fill="#ffffff">10</text>
+      <circle cx="618" cy="612" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="618" y="612" fill="#ffffff">11</text>
+      <circle cx="858" cy="612" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="858" y="612" fill="#ffffff">12</text>
+      <path d="M 618 698 L 382 698" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 618 710 L 858 710" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 382 713 L 618 713" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <path d="M 858 725 L 618 725" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <clipPath id="swb3"><rect x="46" y="780" width="918" height="206" rx="12"/></clipPath>
+      <rect x="46" y="780" width="918" height="206" rx="12" fill="#eef2f8" stroke="rgba(90,107,133,.35)"/>
+      <g clip-path="url(#swb3)">
+      <text class="sw-stage" x="62" y="800" fill="#3f4d63">第四步 · 转化与回访</text>
+      <text class="sw-lead" x="62" y="817">成交不是终点：跟进、提醒、经验回沉都在这条链上自动跑完。</text>
+      <line x1="62" y1="826" x2="948" y2="826" stroke="rgba(90,107,133,.3)"/>
+      </g>
+      <text class="sw-colh" x="160" y="868" text-anchor="middle" data-box="47 850 273 986">反馈与回访</text>
+      <text class="sw-colh" x="382" y="868" text-anchor="middle" data-box="269 850 495 986">跟进与回顾</text>
+      <text class="sw-colh" x="618" y="868" text-anchor="middle" data-box="505 850 731 986">看板与提醒</text>
+      <text class="sw-colh" x="858" y="868" text-anchor="middle" data-box="745 850 971 986">状态与数据回写</text>
+      <text class="sw-act" x="160" y="887" text-anchor="middle" data-box="47 850 273 986">回访反馈、追加需求</text>
+      <text class="sw-act" x="382" y="887" text-anchor="middle" data-box="269 850 495 986">跟进记录整理，</text>
+      <text class="sw-act" x="382" y="903" text-anchor="middle" data-box="269 850 495 986">下一步待办生成</text>
+      <text class="sw-act" x="618" y="887" text-anchor="middle" data-box="505 850 731 986">转化进度看板、关键时点提醒，</text>
+      <text class="sw-act" x="618" y="903" text-anchor="middle" data-box="505 850 731 986">成功经验沉淀</text>
+      <text class="sw-act" x="858" y="887" text-anchor="middle" data-box="745 850 971 986">账户状态同步、数据回写归档</text>
+      <circle cx="160" cy="838" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="160" y="838" fill="#ffffff">13</text>
+      <circle cx="382" cy="838" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="382" y="838" fill="#ffffff">14</text>
+      <circle cx="618" cy="838" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="618" y="838" fill="#ffffff">15</text>
+      <circle cx="858" cy="838" r="8.5" fill="#265dcc"/>
+      <text class="sw-step" x="858" y="838" fill="#ffffff">16</text>
+      <path d="M 618 924 L 858 924" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 160 936 L 382 936" fill="none" stroke="#265dcc" stroke-width="1.4" marker-end="url(#sw-cy)"/>
+      <path d="M 858 939 L 618 939" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <path d="M 382 951 L 160 951" fill="none" stroke="#5a6b85" stroke-width="1.3" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <path d="M 618 309 L 618 327" fill="none" stroke="#265dcc" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+      <path d="M 382 327 L 382 309" fill="none" stroke="#5a6b85" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#sw-dim)"/>
+      <path d="M 618 535 L 618 553" fill="none" stroke="#5a6b85" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#sw-dim)"/>
+      <path d="M 382 553 L 382 535" fill="none" stroke="#5a6b85" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#sw-dim)"/>
+      <path d="M 618 761 L 618 779" fill="none" stroke="#265dcc" stroke-width="1.6" marker-end="url(#sw-cy)"/>
+      <path d="M 382 779 L 382 761" fill="none" stroke="#5a6b85" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#sw-dim)"/>
+      <g><rect x="56" y="1002" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="76" cy="1027.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="160" y="1027.0" text-anchor="middle">客户</text></g>
+      <g><rect x="278" y="1002" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="298" cy="1027.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="382" y="1027.0" text-anchor="middle">顾问</text></g>
+      <g><rect x="514" y="1002" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="534" cy="1027.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="618" y="1027.0" text-anchor="middle">AI 工作台</text></g>
+      <g><rect x="754" y="1002" width="208" height="50" rx="10" fill="#ffffff" stroke="#265dcc"/><circle cx="774" cy="1027.0" r="4.5" fill="url(#sw-accent)"/><text class="sw-cardx" x="858" y="1027.0" text-anchor="middle">平台系统</text></g>
+      <path d="M 618 734 L 160 734" fill="none" stroke="#a86f00" stroke-width="1.6" marker-end="url(#sw-go)"/>
+      <text class="sw-goldnote" x="650" y="723" text-anchor="middle" data-box="525 704 775 727">全程唯一需要人工的节点</text>
+      </svg>
+      <figcaption><b>图 1</b> · 端到端业务流程 —— 客户 / 顾问 / AI 工作台 / 平台系统 的分工与交接。金色段是全程唯一需要人工的节点。</figcaption>
+    </figure>
   </div>
 </section>
 
